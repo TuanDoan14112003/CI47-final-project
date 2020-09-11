@@ -1,0 +1,123 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    
+    <main>
+      <div class="main-section">
+        <div class="container">
+          <div class="main-section-data">
+            <div class="row">
+              <div class="col-lg-6 col-md-8 no-pd">
+
+
+                <div class="main-ws-sec">
+                    {% if user.is_authenticated %}
+                  <div class="post-topbar">
+                    <div class="user-picy">
+                      <img src="{{ user.profile.image.url }}" alt="">
+                    </div>
+                    <div class="post-st">
+                      <ul>
+                        <li><a class="post_project" href="#" title="">Post a Blog</a></li>
+                      </ul>
+                    </div><!--post-st end-->
+                    {% endif %}
+                  </div><!--post-topbar end-->
+                  {% for post in posts %}
+                  <div class="posts-section">
+                
+                    <div class="post-bar">
+                      
+                      <div class="post_topbar">
+
+                        <div class="usy-dt">
+                          <img  class="user-picy" src="{{ post.author.profile.image.url }}" alt="">
+                          <div class="usy-name">
+                            <a href="{% url 'user-posts' post.author %}"><h3>{{ post.author }}</h3></a>
+                            <span><img src="images/clock.png" alt="">{{ post.date_posted|date:"F d, Y" }}</span>
+                          </div>
+                        </div>
+                        <div class="ed-opts">
+
+                          {% if post.author == user %}
+                                                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                    
+                          <ul class="ed-options">
+                            <li><a href="{% url 'post-update' post.id %}" title="">Edit Post</a></li>
+                                                    </ul>
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="job_descp">
+                        <a href="{% url 'post-detail' post.id %}"><h3>{{post.title}}</h3></a>
+                        {% if post.content|length > 1000 %}
+                        <p>{{post.content|slice:":1000"}}...<a href="{% url 'post-detail' post.id %}" title="">view more</a></p>
+                        {% else %}
+                        <p>{{post.content}}</p>
+                        {% endif %}
+                      </div>
+                  
+                    </div><!--post-bar end-->
+                  </div><!--posts-section end-->
+                  {% endfor %}
+                
+                      {% if is_paginated %}
+
+      {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+      {% endif %}
+
+    {% endif %}
+                </div><!--main-ws-sec end-->
+                
+              </div>
+              
+            </div>
+
+          </div><!-- main-section-data end-->
+             
+        </div> 
+
+      </div>
+    </main>
+
+    <div class="post-popup pst-pj">
+      <div class="post-project">
+        <h3>Post a Blog</h3>
+        <div class="post-project-fields">
+          <form method="POST" action="{% url 'post-create' %}">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-lg-12">
+                <input type="text" name="title" placeholder="Title">
+              </div>
+              <div class="col-lg-12">
+                <textarea name="content" placeholder="Content"></textarea>
+              </div>
+              <div class="col-lg-12">
+                <ul>
+                  <li><button class="active" type="submit" value="post">Post</button></li>
+                  <li><a href="#" title="">Cancel</a></li>
+                </ul>
+              </div>
+            </div>
+          </form>
+        </div><!--post-project-fields end-->
+        <a href="#" title=""><i class="la la-times-circle-o"></i></a>
+      </div><!--post-project end-->
+    </div><!--post-project-popup end-->
+
+{% endblock content %}

@@ -1,0 +1,24 @@
+{
+    "sqltools.connections": [
+        {
+            "database": ".\\final/db.sqlite3",
+            "dialect": "SQLite",
+            "name": "3333"
+        },
+        {
+            "database": ".\\c:\\Users\\tuan1\\Desktop\\test999\\db.sqlite3",
+            "dialect": "SQLite",
+            "name": "1"
+        },
+        {
+            "database": ".\\c:\\Users\\tuan1\\Desktop\\test999\\db.sqlite3",
+            "dialect": "SQLite",
+            "name": "test"
+        },
+        {
+            "database": ".\\c:\\Users\\tuan1\\Desktop\\test999\\db.sqlite3",
+            "dialect": "SQLite",
+            "name": "pikachu"
+        }
+    ]
+}

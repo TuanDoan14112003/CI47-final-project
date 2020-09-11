@@ -1,0 +1,96 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+      <section class="forum-page">
+        <div class="container">
+          <div class="forum-questions-sec">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="forum-post-view">
+                  <div class="usr-question">
+                    <div class="usr_img">
+                      <img src="{{ object.author.profile.image.url }}" alt="">
+                    </div>
+                    <div class="usr_quest">
+                      <h3>{{ object.author }}</h3>
+                      <span><i class="fa fa-clock-o"></i>{{ object.date_posted|date:"F d, Y" }}</span>
+                      <h3>{{object.title}}</h3>
+                      <p>{{ object.content }}</p>
+
+
+
+
+                      <div class="comment-section">
+                          {% if comments %}
+                          <h3>{{ comments|length }} comments</h3>
+                      {% else %}
+                          <h3>No comments.</h3>
+                      {% endif %}
+                        
+                        <div class="comment-sec">
+                          <ul>
+                              {% for comment in comments %}
+                                <li>
+                                  
+                                  <div class="comment-list">
+                                    <div class="bg-img">
+                                      <img class="user-picy" src="{{ comment.author.profile.image.url }}" alt="">
+                                    </div>
+                                    <div class="comment">
+                                      <h3>{{comment.author}}</h3>
+                                      <span><img src="images/clock.png" alt="">{{ object.date_posted|date:"F d, Y" }}</span>
+                                      <p>{{comment.content}}</p>
+                                    </div>
+                                  </div><!--comment-list end-->
+                                  
+                                </li>
+                                {% endfor %}
+                          </ul>
+                        </div><!--comment-sec end-->
+                      </div>
+                    </div><!--usr_quest end-->
+                  </div><!--usr-question end-->
+                </div><!--forum-post-view end-->
+                {% if user.is_authenticated %}
+                <div class="post-comment-box">
+                  <div class="user-poster">
+                    <div class="usr-post-img">
+                      <img src="{{ user.profile.image.url }}" alt="">
+                    </div>
+                    <div class="post_comment_sec">
+                      <form method="POST" action="{% url 'comment-create' object.id %}">
+                        {% csrf_token %}
+                        <textarea name="content" placeholder="Your Answer"></textarea>
+                        <button type="submit">Post Answer</button>
+                      </form>
+                    </div><!--post_comment_sec end-->
+                  </div><!--user-poster end-->
+                </div><!--post-comment-box end-->
+                {% endif %}
+                <!--next-prev end-->
+              </div>
+              
+            </div>
+          </div><!--forum-questions-sec end-->
+        </div>
+      </section><!--forum-page end-->
+  
+  
+  
+  
+      <div class="overview-box" id="question-box">
+        <div class="overview-edit">
+          <h3>Ask a Question</h3>
+          <form>
+            <input type="text" name="question" placeholder="Type Question Here">
+            <input type="text" name="tags" placeholder="Tags">
+            <textarea placeholder="Description"></textarea>
+            <button type="submit" class="save">Submit</button>
+            <button type="submit" class="cancel">Cancel</button>
+          </form>
+          <a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+        </div><!--overview-edit end-->
+      </div><!--overview-box end-->
+  
+    </div><!--theme-layout end-->
+  
+  {% endblock %}

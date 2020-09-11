@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/line-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/line-awesome-font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/jquery.mCustomScrollbar.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/lib/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/lib/slick/slick-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog1/css/responsive.css' %}">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    {% if title %}
+        <title>Django Blog - {{ title }}</title>
+    {% else %}
+        <title>Django Blog</title>
+    {% endif %}
+</head>
+<body>
+        <header>
+            <div class="container">
+                <div class="header-data">
+                    <div class="logo">
+                        <a href="index.html" title=""><img src="images/logo.png" alt=""></a>
+                    </div>
+                    <!--logo end-->
+                    <div class="search-bar">
+                    </div>
+                    <!--search-bar end-->
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="{% url 'blog-home' %}" title="">
+                                    <span><img src="images/icon1.png" alt=""></span> Home
+                                </a>
+                            </li>
+
+                    {% if user.is_authenticated %}
+                        </ul>
+                    </nav>
+                    <!--nav end-->
+                    <div class="menu-btn">
+                        <a href="#" title=""><i class="fa fa-bars"></i></a>
+                    </div>
+                    <!--menu-btn end-->
+                    
+                    <div class="user-account">
+                      
+                        <div class="user-info">
+                            <img height="30" width="30" src="{{user.profile.image.url}}" alt="">
+                            <a href="#" title="">{{user.username}}</a>
+                        </div>
+
+                        <div class="user-account-settingss">
+                            <ul class="us-links">
+                                <li><a href="{% url 'user-posts' user.username  %}">Your Profile</a></li>
+                                <li><a href="{% url 'profile' %}" title="">Account Setting</a></li>
+                                <li><a href="{% url 'change-password' %}" title="">Change your password</a></li>
+                            </ul>
+                            <h3 class="tc"><a href="{% url 'logout' %}" title="">Logout</a></h3>
+                        </div>
+                      
+                        <!--user-account-settingss end-->
+                    </div>                  
+                   
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+                        </ul>
+                    {% endif %} 
+                <!--header-data end-->
+            </div>
+        </header>
+    <main role="main" class="">
+      <div class="">
+        <div class="">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+    <footer>
+        <div class="footy-sec mn no-margin">
+            <div class="container">
+                <ul>
+                    <li><a href="" title="">Created by Team Bloggit</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer><!--footer end-->x
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="{% static 'blog1/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog1/js/popper.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog1/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog1/js/jquery.mCustomScrollbar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog1/lib/slick/slick.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'blog1/js/script.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
