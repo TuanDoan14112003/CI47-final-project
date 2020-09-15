@@ -1,0 +1,193 @@
+
+
+/* Main section styling */
+.main-section-newfeeds {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(219, 224, 230);
+    padding: 2%;
+}
+.margin-top {
+    margin-top: 3%;
+}
+.padding {
+    padding: 1%;
+}
+.main-content-right {
+    width: 34%;
+    border: 2px solid red;
+    
+}
+.main-content-left {
+    width: 65%;
+}
+/* Trendstyling */
+.trending-section, .main-content-section {
+    width: 70% !important;  
+}
+
+.trending-section p, .main-content-section p {
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+.trending-section .trending-items {
+    width: 23%;
+    height: 200px;
+    position: relative;
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 1%;
+    padding: 1%;
+    border-radius: 10px;
+}
+.trending-section .trending-text-div {
+    position: absolute;
+    bottom: 5px;
+    color: #ffffff;
+}
+.trending-text-title {
+    font-weight: bold;
+}
+.trending-section .trending-text-desc {
+    font-size: 0.8em;
+}
+.trending-section .trending-text-subreddit {
+    font-size: 0.7em;
+    display: flex;
+}
+.trending-text-subreddit-img {
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+/* main content styling */
+.sorting-bar {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(161, 161, 168);
+    width: 100%;
+    
+}
+.sorting-bar .hot-button, .sorting-bar #dropDownSorting {
+    color: #33a8ff;
+}
+.sorting-bar .btn {
+    margin-right: 10px;
+}
+.sorting-bar p {
+    font-weight: 400;
+    padding-left: 20px;
+    margin: 4px;
+    cursor: pointer;
+}
+.sorting-bar p:hover {
+    background-color: #cacaca;
+}
+
+.single-article {
+    border: 1px solid rgb(161, 161, 168);
+    width: 100%;  
+    margin-left: 0 !important;
+}
+.upvote-column {
+    background-color: #f8f9fa;
+}
+.upvote-column button {
+    border: none;
+    background-color: #f8f9fa;
+}
+.upvote-column .fa-arrow-alt-circle-up {
+    color: orange;
+    margin: auto
+}
+.upvote-column > p {
+    font-size: 0.7em;
+}
+.main-article-content {
+    background-color: white;
+}
+.subreddit-info p {
+    font-size: .8em;
+}
+.main-article-content .post-info p {
+    font-size: .8em;
+    font-weight: 400;
+    color: grey;
+}
+.main-article-header > button {
+    font-size: 0.8em;
+}
+.main-article-body img{
+    width: 100%;  
+    height: auto;
+}
+.main-article-interaction {
+}
+.main-article-interaction button {
+    border: none;
+    background-color: transparent;
+    color: grey;
+    font-weight: 500;
+    margin-right: 4%;
+    padding: 1%;
+}
+.main-article-interaction button:hover {
+    background-color: rgb(199, 191, 191);
+    color: white;
+    border-radius: 5px;
+}
+.top-community-header {
+    height: 100px;
+    /* background-repeat: repeat; */
+    background-size: cover;
+    background-position: left;
+    background: linear-gradient(0deg, rgb(2, 132, 231), rgba(2,173,231,0.5)), url(../icon/top-communities-banner.png);
+    
+}
+.top-community-header p {
+    color: #ffffff;
+    font-size: 1rem;
+    padding-top: 60px;
+    text-align: center;
+}
+.top-community-section {
+    border: 2px solid green;
+}
+.list-group-item .fa-caret-up {
+    color:#36fa25;
+}
+.list-group-item  .top-community-img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    /* margin: 0 3px; */
+}
+.list-group-item span {
+    font-size: 0.8rem;
+}
+
+
+
+
+
+
+/* Custom responsive */
+@media only screen and (max-width : 992px) {
+    .trending-section .trending-items {
+        width: 48%;
+    }
+    .margin-top {
+        margin-top: 10%;
+    }
+}
+@media only screen and (max-width : 768px) {
+    .sorting-bar {
+        margin-top: 70px;
+    }
+}

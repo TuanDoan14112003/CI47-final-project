@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/newfeeds.css">
+
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- JS, Popper.js, and jQuery -->
@@ -104,121 +106,160 @@
                 </div>
             </div>
         </div>
+        <!-- End trending -->
 
         <!-- Start content -->
-        <div class="container-fluid main-content-section">
-            <p>Popular posts</p>
-            <div class="row padding">
-                <div class="col-xs-12 col-lg-7">
-                    <div class="sorting-bar d-flex justify-content-start padding">
-                        <button class="btn btn-light hot-button"> <i class="fas fa-burn"></i> Hot</button>
-                        <button class="btn btn-light dropdown-toggle" id="dropDownSorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Everywhere</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <p>Vietnam</p>    
-                            <p>China</p>
-                            <p>America</p>
-                            <p>France</p>
+        <div class="container-fluid main-content-section d-flex justify-content-between">
+                <div class="main-content-left">
+                    <p>Popular posts</p>
+                    <div class="row padding">
+                        <div class="col-12">
+                            <div class="sorting-bar d-flex justify-content-start padding">
+                                <button class="btn btn-light hot-button"> <i class="fas fa-burn"></i> Hot</button>
+                                <button class="btn btn-light dropdown-toggle" id="dropDownSorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Everywhere</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <p>Vietnam</p>    
+                                    <p>China</p>
+                                    <p>America</p>
+                                    <p>France</p>
+                                </div>
+                                <button class="btn btn-light"> <i class="fas fa-star"></i> New</button>
+                                <button class="btn btn-light"> <i class="fas fa-poll"></i> Top</button>
+                                
+                            </div>
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
+                                    <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                    <p>50.5k</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/sampleSubreddit</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p>Posted by <span>u/sampleUser</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <div class="main-article-body margin-top">
+                                        <img src="../sample-img/post-image-1.png" alt="">
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>
+                                        
+        
+                                        
+                                    </div>
+                                </div>  
+        
+                            </div>
+        
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
+                                    <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                    <p>50.5k</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/sampleSubreddit</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p>Posted by <span>u/sampleUser</span> <span>4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <div class="main-article-body margin-top">
+                                        <img src="../sample-img/post-image-1.png" alt="">
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>
+                                        
+        
+                                        
+                                    </div>
+                                </div>  
+        
+                            </div>
                         </div>
-                        <button class="btn btn-light"> <i class="fas fa-star"></i> New</button>
-                        <button class="btn btn-light"> <i class="fas fa-poll"></i> Top</button>
-                        
-                    </div>
-                    <div class="single-article d-flex  row text-center margin-top justify-content-between">
-                        <div class="upvote-column col-1 d-flex flex-column align-items-center">
-                            <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
-                            <p>50.5k</p>
-                            <button><i class="fas fa-arrow-alt-circle-down"></i></button>
-                        </div>
-                        <div class="main-article-content d-flex col-11 flex-column ">
-                            <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
-                                <div class="subreddit-info d-flex">
-                                    <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
-                                    <p>r/sampleSubreddit</p>
-                                </div>
-
-                                <div class="post-info d-flex ml-3">
-                                    <p>Posted by <span>u/sampleUser</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
-                                </div>
-
-                                <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
-                            </div>
-                            <div class="main-article-body margin-top">
-                                <img src="../sample-img/post-image-1.png" alt="">
-                            </div>
-                            <div class="main-article-interaction d-flex justify-content-start margin-top mb-2">
-                                <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
-                                <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
-                                <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
-                                <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
-                                <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
-                                    <div class="dropdown-item d-flex  align-items-center ">
-                                        <i class="fas fa-ban mr-2"></i>
-                                        <p>Hide</p>
-                                    </div>
-                                    <div class="dropdown-item d-flex  align-items-center">
-                                        <i class="far fa-flag mr-2"></i>
-                                        <p>Report</p>
-                                    </div>
-                                </div>
-                                
-
-                                
-                            </div>
-                        </div>  
-
-                    </div>
-
-                    <div class="single-article d-flex  row text-center margin-top justify-content-between">
-                        <div class="upvote-column col-1 d-flex flex-column align-items-center">
-                            <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
-                            <p>50.5k</p>
-                            <button><i class="fas fa-arrow-alt-circle-down"></i></button>
-                        </div>
-                        <div class="main-article-content d-flex col-11 flex-column ">
-                            <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
-                                <div class="subreddit-info d-flex">
-                                    <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
-                                    <p>r/sampleSubreddit</p>
-                                </div>
-
-                                <div class="post-info d-flex ml-3">
-                                    <p>Posted by <span>u/sampleUser</span> <span>4 hours ago</span> </p>
-                                </div>
-
-                                <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
-                            </div>
-                            <div class="main-article-body margin-top">
-                                <img src="../sample-img/post-image-1.png" alt="">
-                            </div>
-                            <div class="main-article-interaction d-flex justify-content-start margin-top mb-2">
-                                <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
-                                <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
-                                <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
-                                <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
-                                <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
-                                    <div class="dropdown-item d-flex  align-items-center ">
-                                        <i class="fas fa-ban mr-2"></i>
-                                        <p>Hide</p>
-                                    </div>
-                                    <div class="dropdown-item d-flex  align-items-center">
-                                        <i class="far fa-flag mr-2"></i>
-                                        <p>Report</p>
-                                    </div>
-                                </div>
-                                
-
-                                
-                            </div>
-                        </div>  
-
                     </div>
                 </div>
-                <div class="col-lg-4 d-none d-lg-block">
-                    
+                <div class="main-content-right">
+                    <div class="container-fluid top-community-section" >
+                        <div class="top-community-header">
+                            <p>Top Growing Communities</p>
+                        </div>
+                        <div class="top-community-body" > 
+                            <ol class="list-group list-group-flush">
+                                <li class="list-group-item">1. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-1.png" alt="" class="top-community-img">
+                                     <span>r/BestSubreddit</span>
+                                </li>
+                                <li class="list-group-item">2. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-2.png" alt="" class="top-community-img">
+                                      <span>r/SecondBestCommu</span>
+                                </li>
+                                <li class="list-group-item">3. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-3.png" alt="" class="top-community-img">
+                                      <span>r/Coolforum</span>
+                                </li>
+                                <li class="list-group-item">4. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-4.png" alt="" class="top-community-img">
+                                      <span>r/KindaNniceSubbreddt</span>
+                                </li>
+                                <li class="list-group-item">5. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-2.png" alt="" class="top-community-img">
+                                     <span>r/TheFifthPlace</span>
+                                </li>
+                            </ol>
+                        </div>
+
+                          <button type="button" class="btn btn-primary btn-lg btn-block mt-3">View all</button>
+                    </div>
                 </div>
-            </div>
+
         </div>
-    </div>
 
+    </div>
 </body>
 </html>
