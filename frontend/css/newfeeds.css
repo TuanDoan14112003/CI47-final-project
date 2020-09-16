@@ -26,7 +26,7 @@
 }
 /* Trendstyling */
 .trending-section, .main-content-section {
-    width: 70% !important;  
+    width: 60% !important;  
 }
 
 .trending-section p, .main-content-section p {
@@ -123,12 +123,29 @@
 .main-article-header > button {
     font-size: 0.8em;
 }
-.main-article-body img{
+.main-article-body {
+    overflow-y: hidden;
+}
+.main-article-body.image-type {
+    max-height: 600px;
+}
+.main-article-body.video-type video {
+    width: 100%;
+    
+}
+.main-article-body.text-type {
+    max-height: 300px;
+}
+
+.main-article-body .article-image-content{
     width: 100%;  
     height: auto;
 }
-.main-article-interaction {
+.article-text-content p {
+    font-weight: 300;
 }
+
+
 .main-article-interaction button {
     border: none;
     background-color: transparent;
@@ -176,6 +193,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url(../sample-img/create-post-community-banner.png);
+}
+.single-article .individual-post-title {
+    font-weight: 600;
 }
 
 
