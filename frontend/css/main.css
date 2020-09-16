@@ -28,3 +28,16 @@
 .navbar .dropdown-item p {
     margin: 0 10px;
 }
+@media only screen and (max-width : 1500px) {
+    .navbar .button-container button {
+        font-size: 0.9em;
+    }
+    .dropdown-item p {
+        font-size: 0.85em;
+    }
+}
+@media only screen and (max-width : 992px) {
+    .dropdown-item p {
+        font-size: 0.7em;
+    }
+}

@@ -18,7 +18,6 @@
 }
 .main-content-right {
     width: 34%;
-    border: 2px solid red;
     
 }
 .main-content-left {
@@ -144,8 +143,6 @@
 .article-text-content p {
     font-weight: 300;
 }
-
-
 .main-article-interaction button {
     border: none;
     background-color: transparent;
@@ -173,9 +170,6 @@
     padding-top: 60px;
     text-align: center;
 }
-.top-community-section {
-    border: 2px solid green;
-}
 .list-group-item .fa-caret-up {
     color:#36fa25;
 }
@@ -188,6 +182,11 @@
 .list-group-item span {
     font-size: 0.8rem;
 }
+.right-column-background {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
 .create-post-community-banner {
     height: 150px;
     background-size: cover;
@@ -197,10 +196,62 @@
 .single-article .individual-post-title {
     font-weight: 600;
 }
+.top-community-image {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.top-community-details p {
+    font-weight: 400;
+    font-size: .8em;
+}
+
 
 
 
 /* Custom responsive */
+@media only screen and (max-width : 1500px) {
+    .trending-section, .main-content-section {
+        width: 65% !important;  
+    }
+    .trending-text-div, .top-community-header p {
+        font-size: 0.85em;
+    }
+    .sorting-bar button, .create-post-community  {
+        font-size: 0.9em;
+    }
+    .main-article-header, .interesting-community-item button, .dropdown-item p {
+        font-size: 0.85em;
+    }
+    .individual-post-title {
+        font-size: 1em;
+    }
+    .main-article-interaction span {
+        font-size: 0.9em;
+    }
+    .list-group-item span, .top-community-details p {
+        font-size: 0.75em;
+    }
+    .list-group-item .fa-caret-up {
+        display: none;
+    }
+    .posted-by-text {
+        display: none;
+    }
+
+}
+@media only screen and (max-width : 1300px) {
+    .trending-section, .main-content-section {
+        width: 75% !important;  
+    }
+    .article-text-content p {
+        font-size: .9em;
+    }
+    .list-group-item span, .top-community-details p {
+        font-size: 0.7em;
+    }
+}
+
 @media only screen and (max-width : 992px) {
     .trending-section .trending-items {
         width: 48%;
@@ -208,9 +259,60 @@
     .margin-top {
         margin-top: 10%;
     }
+    .main-content-right {
+        display: none;
+    }
+    .main-content-left {
+        width: 100%;
+    }
+    .single-article, .main-article-body  {
+        margin-top: 4%;
+    }
+    .main-article-body.image-type {
+        max-height: 450px;
+    }
+    .main-article-body.text-type {
+        max-height: 200px;
+    }
 }
 @media only screen and (max-width : 768px) {
+    .trending-section, .main-content-section {
+        width: 90% !important;
+    }
     .sorting-bar {
         margin-top: 70px;
+    }
+    .main-article-header p, .main-article-header span {
+        font-size: 0.9em;
+    }
+    .individual-post-title {
+        font-size: 0.95em;
+    }
+    .main-article-interaction span {
+        font-size: 0.85em;
+    }
+    .dropdown-item p {
+        font-size: 0.7em;
+    }
+    .main-article-body {
+        margin-top: 0;
+    }
+
+}
+@media only screen and (max-width : 575px) {
+    .upvote-column {
+        max-width: 12% !important
+    }
+    .main-article-content {
+        max-width: 88% !important
+    }
+    .main-article-header button {
+        display: none;
+    }
+    .main-article-interaction .dropdown-toggle {
+        display: none;
+    }
+    .main-article-interaction span {
+        font-size: 0.8em;
     }
 }
