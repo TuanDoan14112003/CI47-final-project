@@ -171,9 +171,12 @@
 .list-group-item span {
     font-size: 0.8rem;
 }
-
-
-
+.create-post-community-banner {
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../sample-img/create-post-community-banner.png);
+}
 
 
 
