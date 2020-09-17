@@ -150,6 +150,7 @@
     font-weight: 500;
     margin-right: 4%;
     padding: 1%;
+    margin-top: 3%;
 }
 .main-article-interaction button:hover {
     background-color: rgb(199, 191, 191);
@@ -314,5 +315,33 @@
     }
     .main-article-interaction span {
         font-size: 0.8em;
+    }
+}
+@media only screen and (max-width : 375px) {
+    .main-section-newfeeds {
+        padding: 0;
+    }
+    .trending-section, .main-content-section {
+        width: 100% !important;
+    }
+    .main-content-left .sorting-bar {
+        display: none !important;
+    }
+    .main-content-left {
+        margin-top: 100px;
+    }
+    .main-article-header p, .main-article-header span {
+        font-size: .8em;
+    }
+    .individual-post-title {
+        font-size: .85em;
+    }
+    .main-article-content .main-article-interaction {
+        display: none !important;
+    }
+    .main-article-interaction button {
+        background-color: #cacaca;
+        border: 1px solid #cacaca;
+        border-radius: 10px;
     }
 }
