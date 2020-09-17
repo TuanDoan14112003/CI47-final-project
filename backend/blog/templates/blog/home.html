@@ -1,4 +1,5 @@
 {% load static %}
+{% load humanize %}
 {% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
@@ -195,7 +196,7 @@
                                         </div>
         
                                         <div class="post-info d-flex ml-3">
-                                            <p><span class="posted-by-text">Posted by</span> <span>u/{{post.author}}</span> <span class="d-none d-xl-inline">{{post.date_posted}}</span> </p>
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/{{post.author}}</span> <span class="d-none d-xl-inline">{{post.date_posted|naturaltime}}</span> </p>
                                         </div>
         
                                         <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
