@@ -1,7 +1,25 @@
+/* 4 cái dưới là hiện mẫu ra thôi lúc nào anh làm cái kiểu
+giống controller thì xóa đi rồi check nó đúng sai rồi hiện ra*/
+.login_signup_container .form_content .input_wrapper input:invalid {
+    border:solid 2px #ff0000;
+}
+.login_signup_container .form_content .input_wrapper input:valid {
+    border-color: #008000;
+}
+.login_signup_container .form_content .input_wrapper input:invalid~.error_icon {
+    display: block;
+}
+.login_signup_container .form_content .input_wrapper input:valid~.checked_icon {
+    display: block;
+}
+
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 .login_signup_container {
@@ -24,6 +42,8 @@
     padding-left: 5px;
     text-align: left;
     color: red;
+    font-size: 15px;
+    font-style: italic;
     height: 15px;
 }
 
@@ -44,14 +64,17 @@
     font-weight: bolder;
     position: relative;
     top: -50px;
+    font-family: 'Rajdhani', sans-serif;
 }
 
 .login_signup_container .welcome_message h2 {
     font-size: 100px;
     margin-top: 36px;
+    font-family: 'Rajdhani', sans-serif;
 }
 
-.login_signup_container h1 {
+.login_signup_container .form_content h1 {
+    font-family: 'Rajdhani', sans-serif;
     text-align: center;
     color: #000;
     font-weight: 300;
@@ -59,7 +82,7 @@
 }
 
 .login_signup_container .input_wrapper {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     position: relative;
 }
 
@@ -82,9 +105,39 @@
     cursor: text;
 }
 
+.login_signup_container .input_wrapper i {
+    position: absolute;
+    display: none;
+    pointer-events: none;
+    font-size: 15px;
+    top: 17px;
+    right: 10px;
+    cursor: text;
+}
+
+.login_signup_container .input_wrapper .error_icon {
+    color: #ff0000;
+}
+
+.login_signup_container .input_wrapper .checked_icon {
+    color: #008000;
+}
+
 .login_signup_container .form_content .input_wrapper input {
+    display: block;
     height: 48px;
-    padding: 22px 12px 10px;
+    padding: 22px 30px 10px 12px;
+    width: 100%;
+    border-radius: .25rem;
+    color: #495057;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    outline: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
 .login_signup_container .form_content .input_wrapper input:focus~label {
@@ -116,4 +169,13 @@
 
 .login_signup_container .social_link_wrapper .fa.fa-facebook-square {
     color: #00008b;
+}
+
+@media screen and (max-width: 768px) {
+    .login_signup_container .form_container {
+        width: 100%;
+    }
+    .login_signup_container .welcome_message {
+        display: none;
+    }
 }
