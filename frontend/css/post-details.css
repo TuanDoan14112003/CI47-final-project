@@ -1,0 +1,67 @@
+.main-section-newfeeds {
+    background-color: #1c1c1c;
+}
+.top-bar-post-details {
+    color: rgb(204, 204, 204);
+    background-color: black;
+    margin-top: 50px;
+    width: 70%;
+    padding: 0 5%;
+    height: 40px;
+}
+.main-post-container {
+    width: 70% !important;
+    background-color: rgb(219, 224, 230) !important;
+    padding: 2% 5%;
+}
+.main-content-section {
+    width: 100% !important;
+}
+.top-bar-post-details .close-redirect-button {
+    color: rgb(204, 204, 204);
+
+}
+.top-bar-voting-column button {
+    background-color: black;
+    color: rgb(204, 204, 204);
+    border: none;
+
+}
+.top-bar-post-details-left p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    margin: 0 10px;
+}
+.close-redirect-button {
+    font-size: 0.9em !important;
+    font-weight: bold;
+    height: 80%;
+    /* background-color: red !important; */
+}
+.close-redirect-button:hover {
+    background-color: rgb(204, 204, 204);
+    color: white;
+}
+.main-article-body.image-type {
+    max-height: initial;
+}
+.main-article-body.text-type {
+    max-height: initial;
+}
+.upvote-column {
+    background-color: white;
+}
+.commenting-form  {
+    /* height: 50px; */
+    background-color: white;
+}
+.form-submitting-comment button {
+    width: 30%;
+}
+.commenting-text-input {
+    height: 150px;
+    width: 100%;
+}
+.single-article {
+    border: none;
+}
