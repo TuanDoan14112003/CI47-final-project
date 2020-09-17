@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'subreddit',
     'widget_tweaks',
     'mptt',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
