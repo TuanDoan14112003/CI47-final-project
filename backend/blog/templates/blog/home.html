@@ -1,123 +1,471 @@
-{% extends "blog/base.html" %}
-{% block content %}
-    
-    <main>
-      <div class="main-section">
-        <div class="container">
-          <div class="main-section-data">
-            <div class="row">
-              <div class="col-lg-6 col-md-8 no-pd">
+{% load static %}
+{% load custom_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'newsfeed/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'newsfeed/css/newfeeds.css' %}">
 
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Start navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <div class="container-fluid">
 
-                <div class="main-ws-sec">
-                    {% if user.is_authenticated %}
-                  <div class="post-topbar">
-                    <div class="user-picy">
-                      <img src="{{ user.profile.image.url }}" alt="">
+            <div class="icon-container d-flex align-items-center">
+                <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
+                <h4 class="navbar-icon-title">Reddit</h4>
+            </div>
+
+            <form class="form-inline my-3 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="button-container d-flex align-items-center justify-content-around">
+                <span class="collapse navbar-collapse">
+                    <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
+                    <button type="button" class="btn btn-primary">Sign Up</button>
+                </span>
+                <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-moon"></i>
+                            <p>Night mode</p>
+                            <i class="fas fa-toggle-off"></i>
+                        </div>
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <p>Login/Sign Up</p>
+                        </div>
                     </div>
-                    <div class="post-st">
-                      <ul>
-                        <li><a class="post_project" href="#" title="">Post a Blog</a></li>
-                      </ul>
-                    </div><!--post-st end-->
-                    {% endif %}
-                  </div><!--post-topbar end-->
-                  {% for post in posts %}
-                  <div class="posts-section">
-                
-                    <div class="post-bar">
-                      
-                      <div class="post_topbar">
-
-                        <div class="usy-dt">
-                          <img  class="user-picy" src="{{ post.author.profile.image.url }}" alt="">
-                          <div class="usy-name">
-                            <a href="{% url 'user-posts' post.author %}"><h3>{{ post.author }}</h3></a>
-                            <span><img src="images/clock.png" alt="">{{ post.date_posted|date:"F d, Y" }}</span>
-                          </div>
-                        </div>
-                        <div class="ed-opts">
-
-                          {% if post.author == user %}
-                                                    <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                    
-                          <ul class="ed-options">
-                            <li><a href="{% url 'post-update' post.id %}" title="">Edit Post</a></li>
-                                                    </ul>
-                          {% endif %}
-                        </div>
-                      </div>
-                      <div class="job_descp">
-                        <a href="{% url 'post-detail' post.id %}"><h3>{{post.title}}</h3></a>
-                        {% if post.content|length > 1000 %}
-                        <p>{{post.content|slice:":1000"}}...<a href="{% url 'post-detail' post.id %}" title="">view more</a></p>
-                        {% else %}
-                        <p>{{post.content}}</p>
-                        {% endif %}
-                      </div>
-                  
-                    </div><!--post-bar end-->
-                  </div><!--posts-section end-->
-                  {% endfor %}
-                
-                      {% if is_paginated %}
-
-      {% if page_obj.has_previous %}
-        <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-      {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
-          <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
-        {% endif %}
-      {% endfor %}
-
-      {% if page_obj.has_next %}
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
-        <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
-      {% endif %}
-
-    {% endif %}
-                </div><!--main-ws-sec end-->
-                
-              </div>
-              
+                </span>
             </div>
 
-          </div><!-- main-section-data end-->
-             
-        </div> 
+        </div>
+    </nav>
+    <!-- End navbar -->
 
-      </div>
-    </main>
+    <!-- Main section -->
+    <div class="main-section-newfeeds">
+        <!-- Start trending -->
+        <div class="container-fluid trending-section margin-top d-none d-md-block">
+            <p>Trending today</p>
+            <div class="row padding">
+                <div class="trending-items  " style="background-image: url(../sample-img/trending-1.png);" >
+                    <div class="trending-text-div">
+                        <div class="trending-text-title">Post title</div>
+                        <div class="trending-text-desc">Some first words of the post</div>
+                        <div class="trending-text-subreddit">
+                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                            <p>r/sampleSubreddit</p>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="post-popup pst-pj">
-      <div class="post-project">
-        <h3>Post a Blog</h3>
-        <div class="post-project-fields">
-          <form method="POST" action="{% url 'post-create' %}">
-            {% csrf_token %}
-            <div class="row">
-              <div class="col-lg-12">
-                <input type="text" name="title" placeholder="Title">
-              </div>
-              <div class="col-lg-12">
-                <textarea name="content" placeholder="Content"></textarea>
-              </div>
-              <div class="col-lg-12">
-                <ul>
-                  <li><button class="active" type="submit" value="post">Post</button></li>
-                  <li><a href="#" title="">Cancel</a></li>
-                </ul>
-              </div>
+                <div class="trending-items " style="background-image: url(../sample-img/trending-2.png);" >
+                    <div class="trending-text-div">
+                        <div class="trending-text-title">Post title</div>
+                        <div class="trending-text-desc">Some first words of the post</div>
+                        <div class="trending-text-subreddit">
+                            <img src="../sample-img/trending-1.png" alt="" class="trending-text-subreddit-img">
+                            <p>r/sampleSubreddit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-items d-none d-lg-block " style="background-image: url(../sample-img/trending-3.png);" >
+                    <div class="trending-text-div">
+                        <div class="trending-text-title">Post title</div>
+                        <div class="trending-text-desc">Some first words of the post</div>
+                        <div class="trending-text-subreddit">
+                            <img src="../sample-img/trending-4.png" alt="" class="trending-text-subreddit-img ">
+                            <p>r/sampleSubreddit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-items d-none d-lg-block " style="background-image: url(../sample-img/trending-4.png);" >
+                    <div class="trending-text-div">
+                        <div class="trending-text-title">Post title</div>
+                        <div class="trending-text-desc">Some first words of the post</div>
+                        <div class="trending-text-subreddit">
+                            <img src="../sample-img/trending-3.png" alt="" class="trending-text-subreddit-img ">
+                            <p>r/sampleSubreddit</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </form>
-        </div><!--post-project-fields end-->
-        <a href="#" title=""><i class="la la-times-circle-o"></i></a>
-      </div><!--post-project end-->
-    </div><!--post-project-popup end-->
+        </div>
+        <!-- End trending -->
 
-{% endblock content %}
+        <!-- Start content -->
+        <div class="container-fluid main-content-section d-flex justify-content-between">
+            <!--  -->
+                <div class="main-content-left">
+                    <p>Popular posts</p>
+                    <div class="row padding">
+                        <div class="col-12">
+                            <div class="sorting-bar d-flex justify-content-start padding">
+                                <button class="btn btn-light hot-button"> <i class="fas fa-burn"></i> Hot</button>
+                                <button class="btn btn-light dropdown-toggle" id="dropDownSorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Everywhere</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <p>Vietnam</p>    
+                                    <p>China</p>
+                                    <p>America</p>
+                                    <p>France</p>
+                                </div>
+                                <button class="btn btn-light"> <i class="fas fa-star"></i> New</button>
+                                <button class="btn btn-light"> <i class="fas fa-poll"></i> Top</button>
+                                
+                            </div>
+                            
+                                
+                            <!-- <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
+                                    <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                    <p>{{post.score}}</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/{{post.subreddit}}</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/{{post.author}}</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >{{post.title}}</h5>
+                                    <div class="main-article-body image-type margin-top p-3">
+                                        <img src="../sample-img/post-image-1.png" class="article-image-content" alt="" >
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>{{post.comment_count}}</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>                                     
+                                    </div>
+                                </div>  
+        
+                            </div> -->
+                            
+                            {% for post in posts %}
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <form class="upvote-column col-1 d-flex flex-column align-items-center pt-3"
+                                data-what-type='post'
+                                data-what-id={{post.id}}>
+                                {% csrf_token %}
+                                    {% with vote_value=post_votes|get_item:post.id %}
+                                        <div><i onclick="vote(this)" title='upvote' class="fas fa-arrow-alt-circle-up {% if  vote_value == 1 %} voted {% endif %}"></i></div>
+                                        <p class="score">{{post.score}}</p>
+                                        <div><i onclick="vote(this)" title='downvote' class="fas fa-arrow-alt-circle-down {% if  vote_value == -1 %} voted {% endif %}"></i></div>
+                                    {% endwith %}
+                                </form>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/{{post.subreddit}}</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/{{post.author}}</span> <span class="d-none d-xl-inline">{{post.date_posted}}</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >{{post.title}}</h5>
+                                    <div class="main-article-body text-type margin-top p-3">
+                                        <div class="article-text-content text-left">
+                                            {{post.content}}
+                                        </div>
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>{{post.comment_count}}</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>  
+        
+                            </div>
+                            {% endfor %}
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
+                                    <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                    <p>50.5k</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/sampleSubreddit</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/sampleUser</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >Bunny gonna smash bitches </h5>
+                                    <div class="main-article-body video-type margin-top p-3">
+                                            <video src="../sample-video/sample-video-1.mp4" controls autoplay>
+                                        </video>
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>  
+        
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="main-content-right">
+                    <div class="container-fluid top-community-section right-column-background" >
+                        <div class="top-community-header">
+                            <p>Top Growing Communities</p>
+                        </div>
+                        <div class="top-community-body" > 
+                            <ol class="list-group list-group-flush">
+                                <li class="list-group-item">1. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-1.png" alt="" class="top-community-img">
+                                     <span>r/BestSubreddit</span>
+                                </li>
+                                <li class="list-group-item">2. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-2.png" alt="" class="top-community-img">
+                                      <span>r/SecondBestCommu</span>
+                                </li>
+                                <li class="list-group-item">3. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-3.png" alt="" class="top-community-img">
+                                      <span>r/Coolforum</span>
+                                </li>
+                                <li class="list-group-item">4. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-4.png" alt="" class="top-community-img">
+                                      <span>r/KniceSubbreddt</span>
+                                </li>
+                                <li class="list-group-item">5. 
+                                    <i class="fas fa-caret-up"></i>
+                                    <img src="../sample-img/trending-2.png" alt="" class="top-community-img">
+                                     <span>r/TheFifthPlace</span>
+                                </li>
+                            </ol>
+                        </div>
+
+                          <button type="button" class="btn btn-primary btn-md btn-block mt-3">View all</button>
+                    </div>
+
+                    <div class="container-fluid ad-section mt-1">
+                        <div class="ad-header d-flex justify-content-between align-items-center m-3">
+                            <p>Advertisement</p>
+                            <button type="button" class="btn btn-light">x</i></button>
+                        </div>
+                        <div id="advertisement-slide" class="carousel slide" data-ride="carousel" data-interval = "6000">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample.png" alt="First Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-2.png" alt="Second Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-5.png" alt="Fifth Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-4.png" alt="fOURTH Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-3.png" alt="Third Ad">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid create-post-community right-column-background mt-5 ">
+                        <div class="create-post-community-banner mb-3">
+                        </div>
+                        <h2>Home</h2>
+                        <p>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
+                        <button type="button" class="btn btn-primary btn-sm btn-block mt-3">CREATE POST</button>
+                        <button type="button" class="btn btn-secondary btn-sm btn-block mt-3">CREATE COMMUNITY</button>
+                    </div>
+
+                    <div class="container-fluid mt-3 interesting-community right-column-background">    
+                        <div class="interesting-community-header mb-3   ">
+                            <p>Communities you may find interesting</p>
+                        </div>
+                        <div class="interesting-community-list mt-2">
+                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
+                                <div class="col-7 d-flex justify-content-start align-items-center">
+                                    <img src="../sample-img/ad-sample.png" alt="" class="top-community-image mr-3">
+                                    <div class="top-community-details">
+                                        <p>r/community1</p>
+                                        <p>420 members</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary">Join</button>
+                                </div>
+                            </div>
+                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
+                                <div class="col-7 d-flex justify-content-start align-items-center">
+                                    <img src="../sample-img/ad-sample-3.png" alt="" class="top-community-image mr-3">
+                                    <div class="top-community-details">
+                                        <p>r/trendingstuff</p>
+                                        <p>4201 members</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary">Join</button>
+                                </div>
+                            </div>
+                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
+                                <div class="col-7 d-flex justify-content-start align-items-center">
+                                    <img src="../sample-img/ad-sample-2.png" alt="" class="top-community-image mr-3">
+                                    <div class="top-community-details">
+                                        <p>r/hotsubreddit</p>
+                                        <p>2420 members</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary">Join</button>
+                                </div>
+                            </div>
+                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
+                                <div class="col-7 d-flex justify-content-start align-items-center">
+                                    <img src="../sample-img/ad-sample-4.png" alt="" class="top-community-image mr-3">
+                                    <div class="top-community-details">
+                                        <p>r/somethingsomething </p>
+                                        <p>420111 members</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary">Join</button>
+                                </div>
+                            </div>
+                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
+                                <div class="col-7 d-flex justify-content-start align-items-center">
+                                    <img src="../sample-img/ad-sample-5.png" alt="" class="top-community-image mr-3">
+                                    <div class="top-community-details">
+                                        <p>r/memes</p>
+                                        <p>42066 members</p>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button class="btn btn-primary">Join</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="container-fluid ad-section mt-1">
+                        <div class="ad-header-2 d-flex justify-content-between align-items-center m-3">
+                            <p>Advertisement</p>
+                            <button type="button" class="btn btn-light">x</i></button>
+                        </div>
+                        <div id="advertisement-slide-2" class="carousel slide" data-ride="carousel" data-interval = "6000">
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-6.png" alt="First Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-7.png" alt="Second Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-8.png" alt="Fifth Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-9.png" alt="fOURTH Ad">
+                                </a>
+                              </div>
+                              <div class="carousel-item">
+                                <a href="https://www.google.com/" target="_blank">
+                                    <img class="d-block w-100" src="../sample-img/ad-sample-10.png" alt="Third Ad">
+                                </a>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+    <script src="{% static 'newsfeed/js/newsfeed.js' %}"></script>
+</body>
+</html>
