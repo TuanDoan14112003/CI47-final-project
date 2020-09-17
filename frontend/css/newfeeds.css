@@ -102,8 +102,13 @@
     background-color: #f8f9fa;
 }
 .upvote-column .fa-arrow-alt-circle-up {
-    color: orange;
     margin: auto
+}
+.fa-arrow-alt-circle-up, .fa-arrow-alt-circle-down {
+    
+}
+.active-vote-clicked {
+    color: orange;
 }
 .upvote-column > p {
     font-size: 0.7em;
