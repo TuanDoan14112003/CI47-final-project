@@ -11,6 +11,7 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from channels.layers import get_channel_layer
 from .models import Post, Comment,Vote
 from django_project.utils.helpers import post_only
 
@@ -39,6 +40,57 @@ def home(request):
 #     context_object_name = 'posts'
 #     ordering = ['-date_posted']
 #     paginate_by = 5
+
+def post_comment(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'msg': "You need to log in to post new comments."})
+    parent_type = request.POST.get('parentType', None)
+    parent_id = request.POST.get('parentId', None)
+    raw_comment = request.POST.get('commentContent', None)
+
+    if not all([parent_id, parent_type]) or \
+            parent_type not in ['comment', 'post'] or \
+        not parent_id.isdigit():
+        return HttpResponseBadRequest()
+
+    if not raw_comment:
+        return JsonResponse({'msg': "You have to write something."})
+    author = request.user
+    parent_object = None
+    try:  # try and get comment or submission we're voting on
+        if parent_type == 'comment':
+            parent_object = Comment.objects.get(id=parent_id)
+        elif parent_type == 'post':
+            parent_object = Post.objects.get(id=parent_id)
+
+    except (Comment.DoesNotExist, Post.DoesNotExist):
+        return HttpResponseBadRequest()
+
+    comment = Comment.create(author=author,
+                             raw_comment=raw_comment,
+                             parent=parent_object)
+
+    comment.save()
+    return JsonResponse({'msg': "Your comment has been posted."})
+
+def create_comment(request, post_id=None):
+    if request.method == "POST":
+        post = Post.objects.get(id=post_id)
+        comment = post.comments.create(author=request.user, content=request.POST.get('content'))
+        notification = CustomNotification.objects.create(type="comment", recipient=post.author, actor=request.user, verb="commented on your post")
+        channel_layer = get_channel_layer()
+        channel = "comment_like_notifications_{}".format(post.author.username)
+        print(json.dumps(NotificationSerializer(notification).data))
+        async_to_sync(channel_layer.group_send)(
+            channel, {
+                "type": "notify",
+                "command": "new_like_comment_notification",
+                "notification": json.dumps(NotificationSerializer(notification).data)
+            }
+        )
+        return redirect(reverse_lazy('core:home'))
+    else:
+        return redirect(reverse_lazy('core:home'))
 
 @post_only
 def vote(request):
@@ -136,15 +188,75 @@ class UserPostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
+def PostDetailView(request, pk=None):
+    """
+    Handles comment view when user opens the thread.
+    On top of serving all comments in the thread it will
+    also return all votes user made in that thread
+    so that we can easily update comments in template
+    and display via css whether user voted or not.
 
-class PostDetailView(DetailView):
-    model = Post
+    :param thread_id: Thread ID as it's stored in database
+    :type thread_id: int
+    """
 
-    def get_context_data(self, **kwargs):
-        post = get_object_or_404(Post, pk=self.kwargs['pk'])
-        context = super().get_context_data(**kwargs)
-        context['comments'] = post.comment_set.order_by('-date_posted')
-        return context
+    this_post = get_object_or_404(Post, id=pk)
+
+    thread_comments = Comment.objects.filter(post=this_post)
+
+    if request.user.is_authenticated:
+        try:
+            reddit_user = request.user
+        except RedditUser.DoesNotExist:
+            reddit_user = None
+    else:
+        reddit_user = None
+
+    sub_vote_value = None
+    comment_votes = {}
+
+    if reddit_user:
+        try:
+            vote = Vote.objects.get(
+                vote_object_type=this_post.get_content_type(),
+                vote_object_id=this_post.id,
+                user=reddit_user)
+            sub_vote_value = vote.value
+        except Vote.DoesNotExist:
+            pass
+
+        try:
+            user_thread_votes = Vote.objects.filter(author=reddit_user,
+                                                    post=this_post)
+
+            for vote in user_thread_votes:
+                comment_votes[vote.vote_object.id] = vote.value
+        except:
+            pass
+
+    return render(request, 'blog/post_detail.html',
+                  {'object'   : this_post,
+                   'comments'     : thread_comments,
+                   'comment_votes': comment_votes,
+                   'sub_vote'     : sub_vote_value})
+
+
+# class PostDetailView(DetailView):
+#     model = Post
+
+#     def get_context_data(self, **kwargs):
+#         post = get_object_or_404(Post, pk=self.kwargs['pk'])
+#         context = super().get_context_data(**kwargs)
+#         context['comments'] = post.comments.order_by('-timestamp')
+#         try:
+#             vote = Vote.objects.get(
+#                 vote_object_type=post.get_content_type(),
+#                 vote_object_id=post.id,
+#                 user=self.request.user)
+#             context['vote_value'] = vote.value
+#         except Vote.DoesNotExist:
+#             pass
+#         return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

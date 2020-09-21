@@ -28,12 +28,25 @@
 .navbar .dropdown-item p {
     margin: 0 10px;
 }
-
-button:disabled,
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
+.notification-button {
+    position: relative;
+    /* display: none; */
+}
+.notification-button button {
+    border: none;
+    outline: none !important;
+    background-color: transparent;
+    font-size: 1.2em;
+}
+.number-of-notification {
+    font-size: 12px;
+    background-color: orange;
+    width: 17px;
+    height: 17px;
+    text-align: center;
+    position: absolute;
+    border-radius: 50%;
+    color: white;
 }
 
 @media only screen and (max-width : 1500px) {

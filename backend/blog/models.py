@@ -29,7 +29,7 @@ class Post(ContentTypeAware):
 
 class Comment(MttpContentTypeAware):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
-    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    post = models.ForeignKey(Post,on_delete=models.CASCADE,related_name="comments")
     parent = TreeForeignKey('self', related_name='children',
                             null=True, blank=True, db_index=True,on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=timezone.now)

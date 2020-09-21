@@ -101,7 +101,7 @@
     border: none;
     background-color: #f8f9fa;
 }
-.upvote-column .voted {
+.voted {
     color: orange;
     margin: auto
 }
