@@ -152,7 +152,7 @@
                                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam optio dicta at fugit laboriosam, nulla error expedita? Soluta, officia iste delectus vitae dolorum pariatur ab itaque quam minima doloribus vel!
                                             </div>
                                             <div class="comment-interaction d-flex justify-content-start">
-                                                <button>
+                                                <button data-toggle="modal" data-target="#replySection">
                                                     <i class="fas fa-comment-alt"></i> 
                                                     <span>Reply</span>
                                                 </button>
@@ -180,7 +180,7 @@
                                                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet ullam sint quae sunt esse. Aperiam libero cumque dolorum architecto odit possimus reprehenderit, provident, suscipit recusandae, blanditiis hic explicabo. Eaque, sit!
                                                     </div>
                                                     <div class="comment-interaction d-flex justify-content-start">
-                                                        <button>
+                                                        <button data-toggle="modal" data-target="#replySection">
                                                             <i class="fas fa-comment-alt"></i> 
                                                             <span>Reply</span>
                                                         </button>
@@ -208,7 +208,7 @@
                                                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet ullam sint quae sunt esse. Aperiam libero cumque dolorum architecto odit possimus reprehenderit, provident, suscipit recusandae, blanditiis hic explicabo. Eaque, sit!
                                                             </div>
                                                             <div class="comment-interaction d-flex justify-content-start">
-                                                                <button>
+                                                                <button data-toggle="modal" data-target="#replySection">
                                                                     <i class="fas fa-comment-alt"></i> 
                                                                     <span>Reply</span>
                                                                 </button>
@@ -238,7 +238,7 @@
                                                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet ullam sint quae sunt esse. Aperiam libero cumque dolorum architecto odit possimus reprehenderit, provident, suscipit recusandae, blanditiis hic explicabo. Eaque, sit!
                                                             </div>
                                                             <div class="comment-interaction d-flex justify-content-start">
-                                                                <button>
+                                                                <button data-toggle="modal" data-target="#replySection">
                                                                     <i class="fas fa-comment-alt"></i> 
                                                                     <span>Reply</span>
                                                                 </button>
@@ -270,7 +270,7 @@
                                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                             </div>
                                             <div class="comment-interaction d-flex justify-content-start">
-                                                <button>
+                                                <button data-toggle="modal" data-target="#replySection">
                                                     <i class="fas fa-comment-alt"></i> 
                                                     <span>Reply</span>
                                                 </button>
@@ -290,6 +290,28 @@
                         </div>
                     </div>
                 </div>
+                <!-- Start modal reply section -->
+                <div class="modal fade" id="replySection" tabindex="-1" role="dialog" aria-labelledby="modalReplySection" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <form>
+                            <div class="form-group">
+                              <label for="modal-comment-text" class="col-form-label">Comment:</label>
+                              <textarea class="form-control" id="modal-comment-text"></textarea>
+                            </div>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Reply</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                <!-- End modal -->
+
                 <!-- End left column -->
 
                 <!-- Start Right-column -->
@@ -491,6 +513,8 @@
 
 
     <script src="../js/newsfeed.js"></script>
+    <script src="../js/post-detail-redirect.js"></script>
+
 </body>
 </html>
 

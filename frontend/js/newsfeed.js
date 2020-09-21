@@ -18,11 +18,3 @@ hideAdButton2.addEventListener('click', () => {
     }, 15000)
 })
 
-
-window.addEventListener('click', function(e){   
-if (document.querySelector('.main-content-section').contains(e.target)){
-    console.log('a');
-} else{
-    console.log('b');
-}
-});
