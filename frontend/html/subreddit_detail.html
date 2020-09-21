@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/subreddit_detail.css">
     <link rel="stylesheet" href="../css/newfeeds.css">
 
     <!-- CSS only -->
@@ -30,49 +31,13 @@
             </form>
 
             <div class="button-container d-flex align-items-center justify-content-around">
-                <div class="dropdown notification-button mt-1 ml-auto">
-                    <span class="number-of-notification">0</span>
-
-                    <button class="btn dropdown-toggle" type="button" id="dropdownNoti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-envelope"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownNoti">
-                      <a class="dropdown-item d-flex align-items-between" href="#">
-                        <div class="noti-image">
-                            <img src="../icon/nav-icon.png" alt="">
-                        </div>
-                        <div class="noti-content">
-                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioned you in a comment </p>
-                            <p class="noti-conntent-bot">3 hours ago</p>
-                        </div>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-between" href="#">
-                        <div class="noti-image">
-                            <img src="../sample-img/ad-sample-5.png" alt="">
-                        </div>
-                        <div class="noti-content">
-                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioned you in a comment </p>
-                            <p class="noti-conntent-bot">3 hours ago</p>
-                        </div>
-                      </a>
-                      <a class="dropdown-item d-flex align-items-between" href="#">
-                        <div class="noti-image">
-                            <img src="../icon/top-communities-banner.png" alt="">
-                        </div>
-                        <div class="noti-content">
-                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioasdm entioasdmentio asdmentioasd 12e ain menti onedmentioneda comment </p>
-                            <p class="noti-conntent-bot">3 hours ago</p>
-                        </div>
-                      </a>
-
-                    </div>
-                  </div>
                 <span class="collapse navbar-collapse">
                     <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
                     <button type="button" class="btn btn-primary">Sign Up</button>
                 </span>
                 <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user"></i>
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <div class="dropdown-item d-flex  align-items-center">
                             <i class="fas fa-moon"></i>
@@ -85,73 +50,35 @@
                         </div>
                     </div>
                 </span>
-   
-                
-                  
+                <span class="notification-button">
+                    <button><i class="fas fa-envelope"></i></button>
+                    <span class="number-of-notification">0</span>
+                </span>
             </div>
 
         </div>
     </nav>
     <!-- End navbar -->
+    <div class="subreddit-cover">
+        <div class="cover-img"></div>
+        <div class="avatar-wrapper">
+            <div class="avatar-img"></div>
+            <div class="subreddit-name-wrapper">
+                <div class="subreddit-name">Politics</div>
+                <div class="subreddit-link">r/politics</div>
+            </div>
+            <div class="button-wrapper"><button class="btn btn-primary btn-block">JOIN</button></div>
+        </div>
+    </div>
+
 
     <!-- Main section -->
     <div class="main-section-newfeeds">
-        <!-- Start trending -->
-        <div class="container-fluid trending-section margin-top d-none d-md-block">
-            <p>Trending today</p>
-            <div class="row padding">
-                <div class="trending-items  " style="background-image: url(../sample-img/trending-1.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-items " style="background-image: url(../sample-img/trending-2.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-1.png" alt="" class="trending-text-subreddit-img">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-items d-none d-lg-block " style="background-image: url(../sample-img/trending-3.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-4.png" alt="" class="trending-text-subreddit-img ">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-items d-none d-lg-block " style="background-image: url(../sample-img/trending-4.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-3.png" alt="" class="trending-text-subreddit-img ">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End trending -->
 
         <!-- Start content -->
         <div class="container-fluid main-content-section d-flex justify-content-between">
             <!--  -->
                 <div class="main-content-left">
-                    <p>Popular posts</p>
                     <div class="row padding">
                         <div class="col-12">
                             <div class="sorting-bar d-flex justify-content-start padding">
@@ -306,41 +233,25 @@
                     </div>
                 </div>
                 <div class="main-content-right">
-                    <div class="container-fluid top-community-section right-column-background" >
-                        <div class="top-community-header">
-                            <p>Top Growing Communities</p>
+                    <div class="container-fluid about-community-section right-column-background" >
+                        <div class="about-community-header">
+                            <p>About Community</p>
                         </div>
-                        <div class="top-community-body" > 
-                            <ol class="list-group list-group-flush">
-                                <li class="list-group-item">1. 
-                                    <i class="fas fa-caret-up"></i>
-                                    <img src="../sample-img/trending-1.png" alt="" class="top-community-img">
-                                     <span>r/BestSubreddit</span>
-                                </li>
-                                <li class="list-group-item">2. 
-                                    <i class="fas fa-caret-up"></i>
-                                    <img src="../sample-img/trending-2.png" alt="" class="top-community-img">
-                                      <span>r/SecondBestCommu</span>
-                                </li>
-                                <li class="list-group-item">3. 
-                                    <i class="fas fa-caret-up"></i>
-                                    <img src="../sample-img/trending-3.png" alt="" class="top-community-img">
-                                      <span>r/Coolforum</span>
-                                </li>
-                                <li class="list-group-item">4. 
-                                    <i class="fas fa-caret-up"></i>
-                                    <img src="../sample-img/trending-4.png" alt="" class="top-community-img">
-                                      <span>r/KniceSubbreddt</span>
-                                </li>
-                                <li class="list-group-item">5. 
-                                    <i class="fas fa-caret-up"></i>
-                                    <img src="../sample-img/trending-2.png" alt="" class="top-community-img">
-                                     <span>r/TheFifthPlace</span>
-                                </li>
-                            </ol>
+                        <div class="top-community-body" >
+                            <div class="community-review">/r/Politics is for news and discussion about U.S. politics.</div>
+                            <div class="community-member-info">
+                                <div class="members">
+                                    <div class="num">6.6m</div>Members
+                                </div>
+                                <div class="members">
+                                    <div class="num">24.7k</div>Online
+                                </div>
+                            </div>
+                            <div class="created-at">
+                                <i class="far fa-calendar-plus"></i>Created 6 thg 8, 2007
+                            </div>
+                            <button class="btn btn-primary btn-block">CREATE POST</button>
                         </div>
-
-                          <button type="button" class="btn btn-primary btn-md btn-block mt-3">View all</button>
                     </div>
 
                     <div class="container-fluid ad-section mt-1">
@@ -379,84 +290,6 @@
                         </div>
                     </div>
 
-                    <div class="container-fluid create-post-community right-column-background mt-5 ">
-                        <div class="create-post-community-banner mb-3">
-                        </div>
-                        <h2>Home</h2>
-                        <p>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
-                        <button type="button" class="btn btn-primary btn-sm btn-block mt-3">CREATE POST</button>
-                        <button type="button" class="btn btn-secondary btn-sm btn-block mt-3">CREATE COMMUNITY</button>
-                    </div>
-
-                    <div class="container-fluid mt-3 interesting-community right-column-background">    
-                        <div class="interesting-community-header mb-3   ">
-                            <p>Communities you may find interesting</p>
-                        </div>
-                        <div class="interesting-community-list mt-2">
-                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
-                                <div class="col-7 d-flex justify-content-start align-items-center">
-                                    <img src="../sample-img/ad-sample.png" alt="" class="top-community-image mr-3">
-                                    <div class="top-community-details">
-                                        <p>r/community1</p>
-                                        <p>420 members</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">Join</button>
-                                </div>
-                            </div>
-                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
-                                <div class="col-7 d-flex justify-content-start align-items-center">
-                                    <img src="../sample-img/ad-sample-3.png" alt="" class="top-community-image mr-3">
-                                    <div class="top-community-details">
-                                        <p>r/trendingstuff</p>
-                                        <p>4201 members</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">Join</button>
-                                </div>
-                            </div>
-                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
-                                <div class="col-7 d-flex justify-content-start align-items-center">
-                                    <img src="../sample-img/ad-sample-2.png" alt="" class="top-community-image mr-3">
-                                    <div class="top-community-details">
-                                        <p>r/hotsubreddit</p>
-                                        <p>2420 members</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">Join</button>
-                                </div>
-                            </div>
-                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
-                                <div class="col-7 d-flex justify-content-start align-items-center">
-                                    <img src="../sample-img/ad-sample-4.png" alt="" class="top-community-image mr-3">
-                                    <div class="top-community-details">
-                                        <p>r/somethingsomething </p>
-                                        <p>420111 members</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">Join</button>
-                                </div>
-                            </div>
-                            <div class="interesting-community-item d-flex  mb-3 justify-content-between row">
-                                <div class="col-7 d-flex justify-content-start align-items-center">
-                                    <img src="../sample-img/ad-sample-5.png" alt="" class="top-community-image mr-3">
-                                    <div class="top-community-details">
-                                        <p>r/memes</p>
-                                        <p>42066 members</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <button class="btn btn-primary">Join</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
                     <div class="container-fluid ad-section mt-1">
                         <div class="ad-header-2 d-flex justify-content-between align-items-center m-3">
                             <p>Advertisement</p>
@@ -489,6 +322,38 @@
                                     <img class="d-block w-100" src="../sample-img/ad-sample-10.png" alt="Third Ad">
                                 </a>
                               </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid community-rule-section right-column-background">
+                        <div class="rule-section-header">
+                            <p>r/Politics Rules</p>
+                        </div>
+                        <div class="rules-body">
+                            <div class="rule-wrapper">
+                                <div class="rule-header-wrapper">
+                                    <div class="rule-header">1.Be Civil</div>
+                                    <i class="fas fa-chevron-up"></i>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="rule-content">The sub promotes civil discourse, Users are expected to follow rediquette when interacting with one another, failure to do so will result in an immediate ban.</div>
+                            </div>
+                            <div class="rule-wrapper">
+                                <div class="rule-header-wrapper">
+                                    <div class="rule-header">2.Post Quality Content</div>
+                                    <i class="fas fa-chevron-up"></i>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="rule-content">test rule content 2</div>
+                            </div>
+                            <div class="rule-wrapper">
+                                <div class="rule-header-wrapper">
+                                    <div class="rule-header">3.Post Original Content</div>
+                                    <i class="fas fa-chevron-up"></i>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="rule-content">test rule content 3</div>
                             </div>
                         </div>
                     </div>
