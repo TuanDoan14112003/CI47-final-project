@@ -30,16 +30,15 @@
 }
 .notification-button {
     position: relative;
+    /* display: none; */
 }
 .notification-button button {
     border: none;
     outline: none !important;
     background-color: transparent;
     font-size: 1.2em;
-    display: none;
 }
 .number-of-notification {
-    display: none;
     font-size: 12px;
     background-color: orange;
     width: 17px;
