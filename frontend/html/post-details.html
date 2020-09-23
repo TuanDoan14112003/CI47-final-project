@@ -26,7 +26,7 @@
                 <h4 class="navbar-icon-title">Reddit</h4>
             </div>
 
-            <form class="form-inline my-3 my-lg-0">
+            <form class="form-inline my-3 my-lg-0 ml-auto">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             </form>
 
@@ -197,7 +197,7 @@
                                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam optio dicta at fugit laboriosam, nulla error expedita? Soluta, officia iste delectus vitae dolorum pariatur ab itaque quam minima doloribus vel!
                                             </div>
                                             <div class="comment-interaction d-flex justify-content-start">
-                                                <button data-toggle="modal" data-target="#replySection">
+                                                <button class="reply-button" onclick="displayHideForm(this.id)">
                                                     <i class="fas fa-comment-alt"></i> 
                                                     <span>Reply</span>
                                                 </button>
@@ -209,6 +209,14 @@
                                                     <i class="fas fa-plus-circle"></i>
                                                     <span>Save</span> 
                                                 </button>
+                                            </div>
+                                            <div class="col-12 container-fluid individual-reply">
+                                                <div class="row">
+                                                    <form action="" class=" col-12 d-flex flex-column">
+                                                        <textarea type="text" class="p-1 mt-1" placeholder="What are your thoughts"></textarea>
+                                                        <button class="btn btn-primary ml-auto mt-3"><span>Comment</span></button>
+                                                    </form>
+                                                </div>
                                             </div>
                                             <ul>
                                                 <li>
@@ -225,7 +233,7 @@
                                                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet ullam sint quae sunt esse. Aperiam libero cumque dolorum architecto odit possimus reprehenderit, provident, suscipit recusandae, blanditiis hic explicabo. Eaque, sit!
                                                     </div>
                                                     <div class="comment-interaction d-flex justify-content-start">
-                                                        <button data-toggle="modal" data-target="#replySection">
+                                                        <button class="reply-button" onclick="displayHideForm(this.id)">
                                                             <i class="fas fa-comment-alt"></i> 
                                                             <span>Reply</span>
                                                         </button>
@@ -237,6 +245,14 @@
                                                             <i class="fas fa-plus-circle"></i>
                                                             <span>Save</span> 
                                                         </button>
+                                                    </div>
+                                                    <div class="col-12 container-fluid individual-reply">
+                                                        <div class="row">
+                                                            <form action="" class=" col-12 d-flex flex-column">
+                                                                <textarea type="text" class="p-1 mt-1" placeholder="What are your thoughts"></textarea>
+                                                                <button class="btn btn-primary ml-auto mt-3"><span>Comment</span></button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                     <ul>
                                                         <li>
@@ -253,7 +269,7 @@
                                                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet ullam sint quae sunt esse. Aperiam libero cumque dolorum architecto odit possimus reprehenderit, provident, suscipit recusandae, blanditiis hic explicabo. Eaque, sit!
                                                             </div>
                                                             <div class="comment-interaction d-flex justify-content-start">
-                                                                <button data-toggle="modal" data-target="#replySection">
+                                                                <button class="reply-button" onclick="displayHideForm(this.id)">
                                                                     <i class="fas fa-comment-alt"></i> 
                                                                     <span>Reply</span>
                                                                 </button>
@@ -265,6 +281,14 @@
                                                                     <i class="fas fa-plus-circle"></i>
                                                                     <span>Save</span> 
                                                                 </button>
+                                                            </div>
+                                                            <div class="col-12 container-fluid individual-reply">
+                                                                <div class="row">
+                                                                    <form action="" class=" col-12 d-flex flex-column">
+                                                                        <textarea type="text" class="p-1 mt-1" placeholder="What are your thoughts"></textarea>
+                                                                        <button class="btn btn-primary ml-auto mt-3"><span>Comment</span></button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -283,7 +307,7 @@
                                                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet ullam sint quae sunt esse. Aperiam libero cumque dolorum architecto odit possimus reprehenderit, provident, suscipit recusandae, blanditiis hic explicabo. Eaque, sit!
                                                             </div>
                                                             <div class="comment-interaction d-flex justify-content-start">
-                                                                <button data-toggle="modal" data-target="#replySection">
+                                                                <button class="reply-button" onclick="displayHideForm(this.id)">
                                                                     <i class="fas fa-comment-alt"></i> 
                                                                     <span>Reply</span>
                                                                 </button>
@@ -295,6 +319,14 @@
                                                                     <i class="fas fa-plus-circle"></i>
                                                                     <span>Save</span> 
                                                                 </button>
+                                                            </div>
+                                                            <div class="col-12 container-fluid individual-reply">
+                                                                <div class="row">
+                                                                    <form action="" class=" col-12 d-flex flex-column">
+                                                                        <textarea type="text" class="p-1 mt-1" placeholder="What are your thoughts"></textarea>
+                                                                        <button class="btn btn-primary ml-auto mt-3"><span>Comment</span></button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -315,7 +347,7 @@
                                                 Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                                             </div>
                                             <div class="comment-interaction d-flex justify-content-start">
-                                                <button data-toggle="modal" data-target="#replySection">
+                                                <button class="reply-button" onclick="displayHideForm(this.id)">
                                                     <i class="fas fa-comment-alt"></i> 
                                                     <span>Reply</span>
                                                 </button>
@@ -328,6 +360,14 @@
                                                     <span>Save</span> 
                                                 </button>
                                             </div>
+                                            <div class="col-12 container-fluid individual-reply">
+                                                <div class="row">
+                                                    <form action="" class=" col-12 d-flex flex-column">
+                                                        <textarea type="text" class="p-1 mt-1" placeholder="What are your thoughts"></textarea>
+                                                        <button class="btn btn-primary ml-auto mt-3"><span>Comment</span></button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </li>
                                     </ul>
                                 </div>
@@ -335,27 +375,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Start modal reply section -->
-                <div class="modal fade" id="replySection" tabindex="-1" role="dialog" aria-labelledby="modalReplySection" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-body">
-                          <form>
-                            <div class="form-group">
-                              <label for="modal-comment-text" class="col-form-label">Comment:</label>
-                              <textarea class="form-control" id="modal-comment-text"></textarea>
-                            </div>
-                          </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Reply</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                
-                <!-- End modal -->
 
                 <!-- End left column -->
 
@@ -559,6 +578,8 @@
 
     <script src="../js/newsfeed.js"></script>
     <script src="../js/post-detail-redirect.js"></script>
+    <script src="../js/comment-reply-visibility.js"></script>
+
 
 </body>
 </html>
