@@ -32,3 +32,32 @@
     border: none;
     
 }
+
+@media only screen and (max-width : 1300px) {
+    .posting-form-header button {
+        width: 40%;
+    }
+    .create-post-header h3 {
+        font-size: 1.5rem;
+    }
+    .custom-select {
+        font-size: 0.9rem !important;
+    }
+    .posting-form-header button {
+        font-size: 13px;
+    }
+    .main-form input, .main-form textarea, .main-form button {
+        font-size: 0.9rem !important;
+    }
+}
+@media only screen and (max-width : 500px) {
+    .posting-form-header button {
+        font-size: 12px;
+    }
+    .posting-form-header button i {
+        display: none;
+    }
+    .main-form input, .main-form textarea, .main-form button {
+        font-size: 0.8rem !important;
+    }
+}
