@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/newfeeds.css">
+    <link rel="stylesheet" href="../css/profile.css">
+    
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Start navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+
+            <div class="icon-container d-flex align-items-center">
+                <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
+                <h4 class="navbar-icon-title">Reddit</h4>
+            </div>
+
+            <form class="form-inline my-3 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="button-container d-flex align-items-center justify-content-around">
+                <div class="dropdown notification-button mt-1 ml-auto">
+                    <span class="number-of-notification">0</span>
+
+                    <button class="btn dropdown-toggle" type="button" id="dropdownNoti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownNoti">
+                      <a class="dropdown-item d-flex align-items-between" href="#">
+                        <div class="noti-image">
+                            <img src="../icon/nav-icon.png" alt="">
+                        </div>
+                        <div class="noti-content">
+                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioned you in a comment </p>
+                            <p class="noti-conntent-bot">3 hours ago</p>
+                        </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-between" href="#">
+                        <div class="noti-image">
+                            <img src="../sample-img/ad-sample-5.png" alt="">
+                        </div>
+                        <div class="noti-content">
+                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioned you in a comment </p>
+                            <p class="noti-conntent-bot">3 hours ago</p>
+                        </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-between" href="#">
+                        <div class="noti-image">
+                            <img src="../icon/top-communities-banner.png" alt="">
+                        </div>
+                        <div class="noti-content">
+                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioasdm entioasdmentio asdmentioasd 12e ain menti onedmentioneda comment </p>
+                            <p class="noti-conntent-bot">3 hours ago</p>
+                        </div>
+                      </a>
+
+                    </div>
+                  </div>
+                <span class="collapse navbar-collapse">
+                    <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
+                    <button type="button" class="btn btn-primary">Sign Up</button>
+                </span>
+                <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-moon"></i>
+                            <p>Night mode</p>
+                            <i class="fas fa-toggle-off"></i>
+                        </div>
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <p>Login/Sign Up</p>
+                        </div>
+                    </div>
+                </span>
+   
+                
+                  
+            </div>
+
+        </div>
+    </nav>
+    <!-- End navbar -->
+
+    <!-- Main section -->
+    <div class="main-section-newfeeds">
+
+        <!-- Start content -->
+        <div class="container-fluid main-content-section d-flex justify-content-between">
+            <!--  -->
+                <div class="main-content-left">
+                    <div class="row padding">
+                        <div class="col-12">
+                            <div class="sorting-bar d-flex justify-content-start padding">
+                                <button class="btn btn-light hot-button"> <i class="fas fa-burn"></i> Hot</button>
+                                <button class="btn btn-light dropdown-toggle" id="dropDownSorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Everywhere</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <p>Vietnam</p>    
+                                    <p>China</p>
+                                    <p>America</p>
+                                    <p>France</p>
+                                </div>
+                                <button class="btn btn-light"> <i class="fas fa-star"></i> New</button>
+                                <button class="btn btn-light"> <i class="fas fa-poll"></i> Top</button>
+                                
+                            </div>
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3 ">
+                                    <button ><i class="fas fa-arrow-alt-circle-up active-vote-clicked"></i></button>
+                                    <p>50.5k</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/sampleSubreddit</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/sampleUser</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >Man wearing T shit and facemask </h5>
+                                    <div class="main-article-body image-type margin-top p-3">
+                                        <img src="../sample-img/post-image-1.png" class="article-image-content" alt="" >
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>                                     
+                                    </div>
+                                </div>  
+        
+                            </div>
+        
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
+                                    <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                    <p>50.5k</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/sampleSubreddit</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/sampleUser</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >Meaningful text  </h5>
+                                    <div class="main-article-body text-type margin-top p-3">
+                                        <div class="article-text-content text-left">
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet <br>consectetur adipisicing elit. Sequi quia molestias natus necessitatibus perspiciatis? Quas eum atque iusto dolorem rerum non repellat maxime. Iste enim deleniti nobis nam maxime consectetur?. Nobis dicta cupiditate, quos quasi asperiores, quia porro atque eum obcaecati modi quod perspiciatis. Et neque cumque beatae ut aliquid! Facilis, natus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur facere explicabo necessitatibus ea voluptatum tempore labore nihil cumque officia, excepturi molestiae rem? Autem similique officiis facilis rerum! Dolorum, sit rerum? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima recusandae tempora molestiae hic, amet architecto iure similique? Illum facilis exercitationem distinctio amet incidunt autem quod, odio totam necessitatibus quaerat. Quo.</p>
+                                            <br>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quia molestias natus necessitatibus perspiciatis? Quas eum atque iusto dolorem rerum non repellat maxime. Iste enim deleniti nobis nam maxime consectetur?. Nobis dicta cupiditate, quos quasi asperiores, quia porro atque eum obcaecati modi quod perspiciatis. Et neque cumque beatae ut aliquid! Facilis, natus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur facere explicabo necessitatibus ea voluptatum tempore labore nihil cumque officia, excepturi molestiae rem? Autem similique officiis facilis rerum! Dolorum, sit rerum? Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima recusandae tempora molestiae hic, amet architecto iure similique? Illum facilis exercitationem distinctio amet incidunt autem quod, odio totam necessitatibus quaerat. Quo.</p>
+                                        </div>
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>  
+        
+                            </div>
+
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
+                                    <button ><i class="fas fa-arrow-alt-circle-up"></i></button>
+                                    <p>50.5k</p>
+                                    <button><i class="fas fa-arrow-alt-circle-down active-vote-clicked"></i></button>
+                                </div>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/sampleSubreddit</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/sampleUser</span> <span class="d-none d-xl-inline">4 hours ago</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >Bunny gonna smash bitches </h5>
+                                    <div class="main-article-body video-type margin-top p-3">
+                                            <video src="../sample-video/sample-video-1.mp4" controls autoplay>
+                                        </video>
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>1.1k Comments</span> </button>
+                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
+                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
+                                            </div>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                </div>  
+        
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="main-content-right">
+                    <div class="container-fluid avatar-section right-column-background" >
+                        <div class="avatar-cover" style="background-image: url(../img/cover-img.jpeg);">
+                            <button class="customize customize-cover"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
+                        <div class="avatar-image" style="background-image: url(../img/user_avatar.jpg);">
+                            <button class="customize customize-avatar"><i class="fas fa-pencil-alt"></i></button>
+                        </div>
+                        <div class="username">u/Coffeboii4real</div>
+                        <div class="user-information-wrapper">
+                            <div class="karma-point">
+                                Karma<div class="num"><i class="far fa-sun"></i>86,800</div>
+                            </div>
+                            <div class="cake-day">
+                                Cake day<div class="num"><i class="fas fa-birthday-cake"></i>22 tháng 8, 2019</div>
+                            </div>
+                        </div>
+                        <div class="button-wrapper">
+                            <button class="btn btn-primary follow-btn">Follow</button>
+                            <button class="btn btn-primary chat-btn">Chat</button>
+                            <button class="btn btn-primary btn-block new-post-btn">New post</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary to-top-btn">Back to top</button>
+                </div>
+        </div>
+    </div>
+
+    <script src="../js/profile.js"></script>
+    <script src="../js/newsfeed.js"></script>
+</body>
+</html>

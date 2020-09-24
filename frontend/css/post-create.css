@@ -1,0 +1,34 @@
+.main-content-left select {
+    max-width: 500px;
+}
+.posting-form {
+    border-radius: 10px;
+}
+.posting-form-header button {
+    width: 30%;
+    padding: 5px;
+    border: none;
+    /* background-color: rgb(219, 224, 230); */
+    background-color: white;
+    border-radius: 7px;
+    border: 1px solid #b3b3b3;
+}
+.posting-form-header button:focus {
+    outline: none;
+}
+.button-background {
+    background-color: #d1d1d1 !important;
+    color: white;
+}
+.posting-form {
+    background-color: white;
+}
+#post-text {
+    height: 150px;
+}
+#preview-image {
+    width: 100%;
+    height: auto;
+    border: none;
+    
+}
