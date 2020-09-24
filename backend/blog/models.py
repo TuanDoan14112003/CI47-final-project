@@ -128,10 +128,8 @@ class Vote(models.Model):
             vote_object.ups += 1
         elif vote_value == -1:
             vote_object.downs += 1
-        print('*'*43)
         vote_object.save()
         vote_object.author.save()
-        print('save roi')
 
         return vote
 

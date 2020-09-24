@@ -1,6 +1,9 @@
 
-
 /* Main section styling */
+.voted {
+    color: orange;
+    margin: auto
+}
 .main-section-newfeeds {
     width: 100%;
     display: flex;
@@ -101,11 +104,15 @@
     border: none;
     background-color: #f8f9fa;
 }
-.voted {
-    color: orange;
+.upvote-column .fa-arrow-alt-circle-up {
     margin: auto
 }
-
+.fa-arrow-alt-circle-up, .fa-arrow-alt-circle-down {
+    
+}
+.active-vote-clicked {
+    color: orange;
+}
 .upvote-column > p {
     font-size: 0.7em;
 }

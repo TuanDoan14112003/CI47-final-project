@@ -13,4 +13,3 @@ def create_vote(sender, instance, created, **kwargs):
                     vote_value=1)
         vote.save()
 
-

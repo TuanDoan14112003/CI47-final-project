@@ -9,6 +9,7 @@ from .views import (
     PostDeleteView,
     UserPostListView,
     CommentCreateView,
+    ReadAllNotification,
 )
 from . import views
 
@@ -21,5 +22,6 @@ urlpatterns = [
     path('post/new_comment/', post_comment, name='comment-create'),
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
+    path('read-all-notification/',ReadAllNotification,name='read-all-notification')
 
 ]
