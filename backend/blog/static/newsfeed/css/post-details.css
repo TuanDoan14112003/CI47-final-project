@@ -61,6 +61,16 @@
     height: 150px;
     width: 100%;
 }
+.individual-reply textarea {
+    width: 300px;
+    height: 130px;
+    font-size: 12px;
+    border: 1px solid #dfdfdf;
+    border-radius: 5px;
+}
+.individual-reply button {
+    font-size: 12px;
+}
 .single-article {
     border: none;
 }
@@ -209,4 +219,8 @@
     .comment-section .comment-time {
         display: none !important;
     }
+}
+
+.individual-reply {
+    display: none;
 }

@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import JsonResponse, HttpResponseBadRequest, Http404, \
     HttpResponseForbidden
+import json
 from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
@@ -11,9 +12,26 @@ from django.views.generic import (
     UpdateView,
     DeleteView
 )
+from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 from .models import Post, Comment,Vote
 from django_project.utils.helpers import post_only
+from django.middleware.csrf import get_token
+from notification.models import CustomNotification
+from notification.serializers import NotificationSerializer
+
+def create_new_notification(recipient,actor,verb):
+    notification = CustomNotification.objects.create(type="comment", recipient=recipient, actor=actor, verb=verb)
+    channel_layer = get_channel_layer()
+    channel = "comment_like_notifications_{}".format(recipient.username)
+    print(json.dumps(NotificationSerializer(notification).data))
+    async_to_sync(channel_layer.group_send)(
+        channel, {
+            "type": "notify",
+            "command": "new_like_comment_notification",
+            "notification": json.dumps(NotificationSerializer(notification).data)
+        }
+    )
 
 def home(request):
     posts = Post.objects.all()
@@ -30,9 +48,12 @@ def home(request):
             except Vote.DoesNotExist:
                 pass
     print(post_votes)
-
+    notifications = request.user.notifications.order_by('-timestamp')
     return render(request, 'blog/home.html', {'posts'     : posts,
-                                                     'post_votes': post_votes})
+                                                     'post_votes': post_votes,
+                                                     'notifications': notifications,
+                                                     'unread_notifications':  len(request.user.notifications.filter(unread=True))}
+                                                     )
 
 # class PostListView(ListView):
 #     model = Post
@@ -42,55 +63,79 @@ def home(request):
 #     paginate_by = 5
 
 def post_comment(request):
+    
     if not request.user.is_authenticated:
         return JsonResponse({'msg': "You need to log in to post new comments."})
     parent_type = request.POST.get('parentType', None)
     parent_id = request.POST.get('parentId', None)
     raw_comment = request.POST.get('commentContent', None)
-
     if not all([parent_id, parent_type]) or \
             parent_type not in ['comment', 'post'] or \
         not parent_id.isdigit():
         return HttpResponseBadRequest()
-
     if not raw_comment:
         return JsonResponse({'msg': "You have to write something."})
     author = request.user
     parent_object = None
+    
     try:  # try and get comment or submission we're voting on
         if parent_type == 'comment':
             parent_object = Comment.objects.get(id=parent_id)
+
+            
         elif parent_type == 'post':
             parent_object = Post.objects.get(id=parent_id)
 
     except (Comment.DoesNotExist, Post.DoesNotExist):
         return HttpResponseBadRequest()
-
+    
     comment = Comment.create(author=author,
                              raw_comment=raw_comment,
                              parent=parent_object)
-
     comment.save()
-    return JsonResponse({'msg': "Your comment has been posted."})
+    new_comment_html = f""" 
+    <li>
+            <form class="comment-voting d-flex flex-column"
+            data-what-type="comment"
+            data-what-id="{comment.id}">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{get_token(request)}">
+            <button type="button"><i title="upvote" onclick="vote(this)" class="fas fa-arrow-alt-circle-up"></i></button>
+            <button type="button"><i title="downvote" onclick="vote(this)" class="fas fa-arrow-alt-circle-down"></i></button>
+            </form>
+            <div class="comment-details d-flex justify-content-start">
+                <a href=""><p class="comment-user-name">u/{request.user.username}</p></a>
+                <p class="score comment-points">0 points</p>
+                <p class="comment-time">just now</p>
+            </div>
+            <div class="comment-content text-left">
+                {raw_comment}
+            </div>
+            <div class="comment-interaction d-flex justify-content-start">
+                <button class="reply-button" onclick="displayHideForm(this.parentElement.parentElement)">
+                    <i class="fas fa-comment-alt"></i> 
+                    <span>Reply</span>
+                </button>
+            </div>
+            <div class="col-12 container-fluid individual-reply">
+                <div class="row">
+                    <form class="reply_form" class=" col-12 d-flex flex-column"
+                    data-parent-type="comment"
+                    data-parent-id="{comment.id}">
+                        <textarea class="comment_form" type="text" class="p-1 mt-1" placeholder="What are your thoughts"></textarea>
+                        <button class="btn btn-primary ml-auto mt-3"><span>Comment</span></button>
+                    </form>
+                </div>
+            </div>
+            <ul class="child_comments" comment_id="{comment.id}">
+            </ul>
+    </li>
+    """
+    # if (request.user != parent_object.author):
+    #     create_new_notification(recipient=parent_object.author,actor=request.user,verb="commented on your post")
+    # if (parent_object.author != comment.post.author):
+    #     create_new_notification(recipient=comment.post.author,actor=request.user,verb="commented on your post")
+    # return JsonResponse({'new_comment_html':new_comment_html})
 
-def create_comment(request, post_id=None):
-    if request.method == "POST":
-        post = Post.objects.get(id=post_id)
-        comment = post.comments.create(author=request.user, content=request.POST.get('content'))
-        notification = CustomNotification.objects.create(type="comment", recipient=post.author, actor=request.user, verb="commented on your post")
-        channel_layer = get_channel_layer()
-        channel = "comment_like_notifications_{}".format(post.author.username)
-        print(json.dumps(NotificationSerializer(notification).data))
-        async_to_sync(channel_layer.group_send)(
-            channel, {
-                "type": "notify",
-                "command": "new_like_comment_notification",
-                "notification": json.dumps(NotificationSerializer(notification).data)
-            }
-        )
-        return redirect(reverse_lazy('core:home'))
-    else:
-        return redirect(reverse_lazy('core:home'))
 
 @post_only
 def vote(request):
@@ -199,9 +244,9 @@ def PostDetailView(request, pk=None):
     :param thread_id: Thread ID as it's stored in database
     :type thread_id: int
     """
-
+    
     this_post = get_object_or_404(Post, id=pk)
-
+    notifications = request.user.notifications.order_by('-timestamp')
     thread_comments = Comment.objects.filter(post=this_post)
 
     if request.user.is_authenticated:
@@ -212,7 +257,7 @@ def PostDetailView(request, pk=None):
     else:
         reddit_user = None
 
-    sub_vote_value = None
+    post_vote_value = None
     comment_votes = {}
 
     if reddit_user:
@@ -221,24 +266,27 @@ def PostDetailView(request, pk=None):
                 vote_object_type=this_post.get_content_type(),
                 vote_object_id=this_post.id,
                 user=reddit_user)
-            sub_vote_value = vote.value
+            post_vote_value = vote.value
         except Vote.DoesNotExist:
             pass
 
         try:
-            user_thread_votes = Vote.objects.filter(author=reddit_user,
+            user_thread_votes = Vote.objects.filter(user=reddit_user,
                                                     post=this_post)
-
-            for vote in user_thread_votes:
-                comment_votes[vote.vote_object.id] = vote.value
+            for vote_item in user_thread_votes:
+                print(vote_item.vote_object.id)
+                comment_votes[vote_item.vote_object.id] = vote_item.value
         except:
             pass
 
+    print(comment_votes)
     return render(request, 'blog/post_detail.html',
                   {'object'   : this_post,
                    'comments'     : thread_comments,
                    'comment_votes': comment_votes,
-                   'sub_vote'     : sub_vote_value})
+                   'post_vote_value'     : post_vote_value,
+                   'notifications': notifications,
+                    'unread_notifications':  len(request.user.notifications.filter(unread=True))})
 
 
 # class PostDetailView(DetailView):
@@ -306,3 +354,10 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         form.instance.post = post
         return super().form_valid(form)
+
+
+def ReadAllNotification(request):
+    user = request.user
+    user.notifications.filter(unread=True).update(unread=False)
+    user.save()
+    return JsonResponse({'msg':'success'})

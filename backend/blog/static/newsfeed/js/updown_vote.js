@@ -31,14 +31,12 @@ function vote(voteButton) {
                 $upvoteArrow = $voteDiv.children("div").children('i.fas.fa-arrow-alt-circle-up');
                 $downArrow = $voteDiv.children("div").children('i.fas.fa-arrow-alt-circle-down');
             } 
-            // else if ($data.whatType == 'comment') {
-            //     var $medaiDiv = $voteDiv.parent().parent();
-            //     var $votes = $medaiDiv.children('div.media-left').children('div.vote').children('div');
-            //     $upvoteArrow = $votes.children('i.fa.fa-chevron-up');
-            //     $downArrow = $votes.children('i.fa.fa-chevron-down');
-            //     $score = $medaiDiv.find('div.media-body:first').find("a.score:first");
-
-            // }
+            else if ($data.whatType == 'comment') {
+                console.log($voteDiv)
+                $score = $voteDiv.siblings('.comment-details').children('.score')
+                $upvoteArrow = $voteDiv.find('i.fa-arrow-alt-circle-up');
+                $downArrow = $voteDiv.find('i.fa-arrow-alt-circle-down');
+            }
 
             // update vote elements
 
@@ -65,7 +63,13 @@ function vote(voteButton) {
 
             // update score element
             var scoreInt = parseInt($score.text());
-            $score.text(scoreInt += voteDiff);
+            var new_value = scoreInt + voteDiff
+            console.log(scoreInt)
+            if ($data.whatType === 'comment'){
+                $score.text(new_value + ' points');
+            } else {
+                $score.text(new_value);
+            }
         }
         }
     })

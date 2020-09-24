@@ -19,45 +19,65 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 <body>
-    <!-- Start navbar -->
-    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-        <div class="container-fluid">
-
-            <div class="icon-container d-flex align-items-center">
-                <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
-                <h4 class="navbar-icon-title">Reddit</h4>
-            </div>
-
-            <form class="form-inline my-3 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
-            <div class="button-container d-flex align-items-center justify-content-around">
-                <span class="collapse navbar-collapse">
-                    <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
-                    <button type="button" class="btn btn-primary">Sign Up</button>
-                </span>
-                <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i>
-
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-item d-flex  align-items-center">
-                            <i class="fas fa-moon"></i>
-                            <p>Night mode</p>
-                            <i class="fas fa-toggle-off"></i>
+        <!-- Start navbar -->
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+            <div class="container-fluid">
+    
+                <div class="icon-container d-flex align-items-center">
+                    <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
+                    <h4 class="navbar-icon-title">Reddit</h4>
+                </div>
+    
+                <form class="form-inline my-3 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                </form>
+    
+                <div id="notification_box" class="button-container d-flex align-items-center justify-content-around">
+                    <div class="dropdown notification-button mt-1 ml-auto">
+                        <span class="number-of-notification">{{unread_notifications}}</span>
+                        <button class="btn dropdown-toggle" type="button" id="dropdownNoti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                        <div id="notification_list" class="dropdown-menu" aria-labelledby="dropdownNoti">
+                        {% for notification in notifications %}
+                          <a class="dropdown-item d-flex align-items-between" href="#">
+                            <div class="noti-image">
+                                <img src="../icon/top-communities-banner.png" alt="">
+                            </div>
+                            <div class="noti-content">
+                                <p class="noti-conntent-top"> <span>u/{{notification.actor.username}}</span> {{notification.verb}} </p>
+                                <p class="noti-conntent-bot">{{notification.timestamp|naturaltime}}</p>
+                            </div>
+                          </a>
+                        {% endfor %}
                         </div>
-                        <div class="dropdown-item d-flex  align-items-center">
-                            <i class="fas fa-sign-in-alt"></i>
-                            <p>Login/Sign Up</p>
+                      </div>
+                    <span class="collapse navbar-collapse">
+                        <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
+                        <button type="button" class="btn btn-primary">Sign Up</button>
+                    </span>
+                    <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <div class="dropdown-item d-flex  align-items-center">
+                                <i class="fas fa-moon"></i>
+                                <p>Night mode</p>
+                                <i class="fas fa-toggle-off"></i>
+                            </div>
+                            <div class="dropdown-item d-flex  align-items-center">
+                                <i class="fas fa-sign-in-alt"></i>
+                                <p>Login/Sign Up</p>
+                            </div>
                         </div>
-                    </div>
-                </span>
+                    </span>
+       
+                    
+                      
+                </div>
+    
             </div>
-
-        </div>
-    </nav>
-    <!-- End navbar -->
-
+        </nav>
+        <!-- End navbar -->
     <!-- Main section -->
     <div class="main-section-newfeeds">
         <!-- Start trending -->
@@ -119,14 +139,6 @@
                     <div class="row padding">
                         <div class="col-12">
                             <div class="sorting-bar d-flex justify-content-start padding">
-                                <button class="btn btn-light hot-button"> <i class="fas fa-burn"></i> Hot</button>
-                                <button class="btn btn-light dropdown-toggle" id="dropDownSorting" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Everywhere</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <p>Vietnam</p>    
-                                    <p>China</p>
-                                    <p>America</p>
-                                    <p>France</p>
-                                </div>
                                 <button class="btn btn-light"> <i class="fas fa-star"></i> New</button>
                                 <button class="btn btn-light"> <i class="fas fa-poll"></i> Top</button>
                                 
@@ -192,7 +204,7 @@
                                     <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
                                         <div class="subreddit-info d-flex">
                                             <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
-                                            <p>r/{{post.subreddit}}</p>
+                                            <p>r/{{post.subreddit.name}}</p>
                                         </div>
         
                                         <div class="post-info d-flex ml-3">
@@ -209,10 +221,8 @@
                                     </div>
                                     <div class="main-article-interaction d-flex justify-content-start padding">
                                         <button> <i class="fas fa-comment-alt"></i>  <span>{{post.comment_count}}</span> </button>
-                                        <button> <i class="fas fa-share"></i></i>  <span>Share</span> </button>
-                                        <button> <i class="fas fa-plus-circle"></i>  <span>Save</span> </button>
                                         <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
-                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost  ">
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost">
                                             <div class="dropdown-item d-flex  align-items-center ">
                                                 <i class="fas fa-ban mr-2"></i>
                                                 <p>Hide</p>
@@ -465,6 +475,8 @@
                 </div>
         </div>
     </div>
+    <script src="{% static 'newsfeed/js/reconnecting-websocket.js' %}"></script>
+    <script src="{% static 'newsfeed/js/notifications.js' %}"></script>
     <script src="{% static 'newsfeed/js/updown_vote.js' %}"></script>
     <script src="{% static 'newsfeed/js/newsfeed.js' %}"></script>
 </body>
