@@ -20,8 +20,5 @@ urlpatterns = [
     path('post/<int:pk>/', PostDetailView, name='post-detail'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/new_comment/', post_comment, name='comment-create'),
-    path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
-    path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('read-all-notification/',ReadAllNotification,name='read-all-notification')
-
 ]

@@ -8,7 +8,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from subreddit.models import Subreddit
-
+from PIL import Image
 class Post(ContentTypeAware):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -19,6 +19,7 @@ class Post(ContentTypeAware):
     downs = models.IntegerField(default=0)
     subreddit = models.ForeignKey(Subreddit, on_delete=models.CASCADE,null=True)
     comment_count = models.PositiveSmallIntegerField(default=0)
+    image = models.ImageField(upload_to='post_pics',null=True,blank=True)
 
     def __str__(self):
         return self.title

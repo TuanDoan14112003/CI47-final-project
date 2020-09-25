@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'subreddit',
+    'subreddit.apps.SubredditConfig',
     'widget_tweaks',
     'mptt',
     'django.contrib.humanize',

@@ -47,6 +47,7 @@ urlpatterns = [
          ),
          name='password_reset_complete'),
     path('', include('blog.urls')),
+    path('subreddit/', include('subreddit.urls')),
     path('change_password/', user_views.change_password, name='change-password')
 ]
 

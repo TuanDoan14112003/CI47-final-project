@@ -14,6 +14,7 @@ function submitComment(event,form) {
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
         },
         success: function(response) {
+            console.log('succccc')
             $(document).scrollTop($(document).height()); 
             if (data.parentType === 'post'){
                 $('#main_comment_list').append(response.new_comment_html)
@@ -34,5 +35,4 @@ $('#main_form').on('submit',function(e){
 
 $(document).on('submit','.reply_form',function(e){
     submitComment(e,$(this))
-    console.log('hereeeeee')
 })

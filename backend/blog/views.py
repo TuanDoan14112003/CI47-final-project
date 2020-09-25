@@ -19,7 +19,7 @@ from django_project.utils.helpers import post_only
 from django.middleware.csrf import get_token
 from notification.models import CustomNotification
 from notification.serializers import NotificationSerializer
-
+from subreddit.models import Subreddit
 def create_new_notification(recipient,actor,verb):
     notification = CustomNotification.objects.create(type="comment", recipient=recipient, actor=actor, verb=verb)
     channel_layer = get_channel_layer()
@@ -134,7 +134,7 @@ def post_comment(request):
     #     create_new_notification(recipient=parent_object.author,actor=request.user,verb="commented on your post")
     # if (parent_object.author != comment.post.author):
     #     create_new_notification(recipient=comment.post.author,actor=request.user,verb="commented on your post")
-    # return JsonResponse({'new_comment_html':new_comment_html})
+    return JsonResponse({'new_comment_html':new_comment_html})
 
 
 @post_only
@@ -289,29 +289,14 @@ def PostDetailView(request, pk=None):
                     'unread_notifications':  len(request.user.notifications.filter(unread=True))})
 
 
-# class PostDetailView(DetailView):
-#     model = Post
-
-#     def get_context_data(self, **kwargs):
-#         post = get_object_or_404(Post, pk=self.kwargs['pk'])
-#         context = super().get_context_data(**kwargs)
-#         context['comments'] = post.comments.order_by('-timestamp')
-#         try:
-#             vote = Vote.objects.get(
-#                 vote_object_type=post.get_content_type(),
-#                 vote_object_id=post.id,
-#                 user=self.request.user)
-#             context['vote_value'] = vote.value
-#         except Vote.DoesNotExist:
-#             pass
-#         return context
-
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content','image']
 
     def form_valid(self, form):
+        subreddit = Subreddit.objects.get(id=self.kwargs['pk'])
+        form.instance.subreddit = subreddit
         form.instance.author = self.request.user
         return super().form_valid(form)
 

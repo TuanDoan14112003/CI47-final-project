@@ -1,6 +1,5 @@
 {% load static %}
 {% load humanize %}
-{% load custom_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'newsfeed/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'subreddit/css/subreddit_detail.css' %}">
     <link rel="stylesheet" href="{% static 'newsfeed/css/newfeeds.css' %}">
 
     <!-- CSS only -->
@@ -19,117 +19,63 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 <body>
-        <!-- Start navbar -->
-        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-            <div class="container-fluid">
-    
-                <div class="icon-container d-flex align-items-center">
-                    <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
-                    <h4 class="navbar-icon-title">Reddit</h4>
-                </div>
-    
-                <form class="form-inline my-3 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
-    
-                <div id="notification_box" class="button-container d-flex align-items-center justify-content-around">
-                    <div class="dropdown notification-button mt-1 ml-auto">
-                        <span class="number-of-notification">{{unread_notifications}}</span>
-                        <button class="btn dropdown-toggle" type="button" id="dropdownNoti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope"></i>
-                        </button>
-                        <div id="notification_list" class="dropdown-menu" aria-labelledby="dropdownNoti">
-                        {% for notification in notifications %}
-                          <a class="dropdown-item d-flex align-items-between" href="#">
-                            <div class="noti-image">
-                                <img src="../icon/top-communities-banner.png" alt="">
-                            </div>
-                            <div class="noti-content">
-                                <p class="noti-conntent-top"> <span>u/{{notification.actor.username}}</span> {{notification.verb}} </p>
-                                <p class="noti-conntent-bot">{{notification.timestamp|naturaltime}}</p>
-                            </div>
-                          </a>
-                        {% endfor %}
-                        </div>
-                      </div>
-                    <span class="collapse navbar-collapse">
-                        <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
-                        <button type="button" class="btn btn-primary">Sign Up</button>
-                    </span>
-                    <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <div class="dropdown-item d-flex  align-items-center">
-                                <i class="fas fa-moon"></i>
-                                <p>Night mode</p>
-                                <i class="fas fa-toggle-off"></i>
-                            </div>
-                            <div class="dropdown-item d-flex  align-items-center">
-                                <i class="fas fa-sign-in-alt"></i>
-                                <p>Login/Sign Up</p>
-                            </div>
-                        </div>
-                    </span>
-       
-                    
-                      
-                </div>
-    
+    <!-- Start navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+
+            <div class="icon-container d-flex align-items-center">
+                <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
+                <h4 class="navbar-icon-title">Reddit</h4>
             </div>
-        </nav>
-        <!-- End navbar -->
+
+            <form class="form-inline my-3 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="button-container d-flex align-items-center justify-content-around">
+                <span class="collapse navbar-collapse">
+                    <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
+                    <button type="button" class="btn btn-primary">Sign Up</button>
+                </span>
+                <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-moon"></i>
+                            <p>Night mode</p>
+                            <i class="fas fa-toggle-off"></i>
+                        </div>
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <p>Login/Sign Up</p>
+                        </div>
+                    </div>
+                </span>
+                <span class="notification-button">
+                    <button><i class="fas fa-envelope"></i></button>
+                    <span class="number-of-notification">0</span>
+                </span>
+            </div>
+
+        </div>
+    </nav>
+    <!-- End navbar -->
+    <div class="subreddit-cover">
+        <div class="cover-img"></div>
+        <div class="avatar-wrapper">
+            <div class="avatar-img"></div>
+            <div class="subreddit-name-wrapper">
+                <div class="subreddit-name">Politics</div>
+                <div class="subreddit-link">r/politics</div>
+            </div>
+            <div class="button-wrapper"><button class="btn btn-primary btn-block">JOIN</button></div>
+        </div>
+    </div>
+
+
     <!-- Main section -->
     <div class="main-section-newfeeds">
-        <!-- Start trending -->
-        <div class="container-fluid trending-section margin-top d-none d-md-block">
-            <p>Trending today</p>
-            <div class="row padding">
-                <div class="trending-items  " style="background-image: url(../sample-img/trending-1.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-items " style="background-image: url(../sample-img/trending-2.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-1.png" alt="" class="trending-text-subreddit-img">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-items d-none d-lg-block " style="background-image: url(../sample-img/trending-3.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-4.png" alt="" class="trending-text-subreddit-img ">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-items d-none d-lg-block " style="background-image: url(../sample-img/trending-4.png);" >
-                    <div class="trending-text-div">
-                        <div class="trending-text-title">Post title</div>
-                        <div class="trending-text-desc">Some first words of the post</div>
-                        <div class="trending-text-subreddit">
-                            <img src="../sample-img/trending-3.png" alt="" class="trending-text-subreddit-img ">
-                            <p>r/sampleSubreddit</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End trending -->
 
         <!-- Start content -->
         <div class="container-fluid main-content-section d-flex justify-content-between">
@@ -141,65 +87,55 @@
                             <div class="sorting-bar d-flex justify-content-start padding">
                                 <button class="btn btn-light"> <i class="fas fa-star"></i> New</button>
                                 <button class="btn btn-light"> <i class="fas fa-poll"></i> Top</button>
-                                
                             </div>
-                        
-                            
                             {% for post in posts %}
-                            <a href="{% url 'post-detail' pk=post.id %}">
-                                <div class="single-article d-flex  row text-center margin-top justify-content-between">
-                                    <form class="upvote-column col-1 d-flex flex-column align-items-center pt-3"
-                                    data-what-type='post'
-                                    data-what-id={{post.id}}>
-                                    {% csrf_token %}
-                                        {% with vote_value=post_votes|get_item:post.id %}
-                                            <div><i onclick="vote(this)" title='upvote' class="fas fa-arrow-alt-circle-up {% if  vote_value == 1 %} voted {% endif %}"></i></div>
-                                            <p class="score">{{post.score}}</p>
-                                            <div><i onclick="vote(this)" title='downvote' class="fas fa-arrow-alt-circle-down {% if  vote_value == -1 %} voted {% endif %}"></i></div>
-                                        {% endwith %}
-                                    </form>
-                                    <div class="main-article-content d-flex col-11 flex-column ">
-                                        <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
-                                            <div class="subreddit-info d-flex">
-                                                <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
-                                                <p>r/{{post.subreddit.name}}</p>
+                            <div class="single-article d-flex  row text-center margin-top justify-content-between">
+                                <form class="upvote-column col-1 d-flex flex-column align-items-center pt-3"
+                                data-what-type='post'
+                                data-what-id={{post.id}}>
+                                {% csrf_token %}
+                                    {% with vote_value=post_votes|get_item:post.id %}
+                                        <div><i onclick="vote(this)" title='upvote' class="fas fa-arrow-alt-circle-up {% if  vote_value == 1 %} voted {% endif %}"></i></div>
+                                        <p class="score">{{post.score}}</p>
+                                        <div><i onclick="vote(this)" title='downvote' class="fas fa-arrow-alt-circle-down {% if  vote_value == -1 %} voted {% endif %}"></i></div>
+                                    {% endwith %}
+                                </form>
+                                <div class="main-article-content d-flex col-11 flex-column ">
+                                    <div class="main-article-header d-flex justif mr-2y-content-start mt-3 align-items-center">
+                                        <div class="subreddit-info d-flex">
+                                            <img src="../sample-img/trending-2.png" alt="" class="trending-text-subreddit-img">
+                                            <p>r/{{post.subreddit.name}}</p>
+                                        </div>
+        
+                                        <div class="post-info d-flex ml-3">
+                                            <p><span class="posted-by-text">Posted by</span> <span>u/{{post.author}}</span> <span class="d-none d-xl-inline">{{post.date_posted|naturaltime}}</span> </p>
+                                        </div>
+        
+                                        <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
+                                    </div>
+                                    <h5 class="individual-post-title mt-1 mr-auto" >{{post.title}}</h5>
+                                    <div class="main-article-body text-type margin-top p-3">
+                                        <div class="article-text-content text-left">
+                                            {{post.content}}
+                                        </div>
+                                    </div>
+                                    <div class="main-article-interaction d-flex justify-content-start padding">
+                                        <button> <i class="fas fa-comment-alt"></i>  <span>{{post.comment_count}}</span> </button>
+                                        <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
+                                        <div class="dropdown-menu" aria-labelledby="interactiveSectionPost">
+                                            <div class="dropdown-item d-flex  align-items-center ">
+                                                <i class="fas fa-ban mr-2"></i>
+                                                <p>Hide</p>
                                             </div>
-            
-                                            <div class="post-info d-flex ml-3">
-                                                <p><span class="posted-by-text">Posted by</span> <span>u/{{post.author}}</span> <span class="d-none d-xl-inline">{{post.date_posted|naturaltime}}</span> </p>
+                                            <div class="dropdown-item d-flex  align-items-center">
+                                                <i class="far fa-flag mr-2"></i>
+                                                <p>Report</p>
                                             </div>
-            
-                                            <button type="button" class="btn btn-primary ml-auto"><i class="fas fa-plus"></i> Join</button>
-                                        </div>
-                                        <h5 class="individual-post-title mt-1 mr-auto" >{{post.title}}</h5>
-                                        <div class="main-article-body text-type margin-top p-3">
-                                            <div class="article-text-content text-left">
-                                                {{post.content}}
-                                            </div>
-                                        </div>
-                                        {% if post.image %}
-                                        <div class="main-article-body image-type margin-top p-3">
-                                            <img src="media/{{post.image}}" class="article-image-content" alt="" >
-                                        </div>
-                                        {% endif %}
-                                        <div class="main-article-interaction d-flex justify-content-start padding">
-                                            <button> <i class="fas fa-comment-alt"></i>  <span>{{post.comment_count}}</span> </button>
-                                            <button class="dropdown-toggle" id="interactiveSectionPost" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-ellipsis-h"></i> </button>
-                                            <div class="dropdown-menu" aria-labelledby="interactiveSectionPost">
-                                                <div class="dropdown-item d-flex  align-items-center ">
-                                                    <i class="fas fa-ban mr-2"></i>
-                                                    <p>Hide</p>
-                                                </div>
-                                                <div class="dropdown-item d-flex  align-items-center">
-                                                    <i class="far fa-flag mr-2"></i>
-                                                    <p>Report</p>
-                                                </div>
-                                            </div>                                    
-                                        </div>
-                                    </div>  
-            
-                                </div>
-                            </a>
+                                        </div>                                    
+                                    </div>
+                                </div>  
+        
+                            </div>
                             {% endfor %}
                             <div class="single-article d-flex  row text-center margin-top justify-content-between">
                                 <div class="upvote-column col-1 d-flex flex-column align-items-center pt-3">
@@ -328,8 +264,8 @@
                         </div>
                         <h2>Home</h2>
                         <p>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
-                        <button type="button" class="btn btn-primary btn-sm btn-block mt-3">CREATE POST</button>
-                        <button type="button" class="btn btn-secondary btn-sm btn-block mt-3">CREATE COMMUNITY</button>
+                        <a href="{% url 'post-create' %}"><button type="button" class="btn btn-primary btn-sm btn-block mt-3">CREATE POST</button></a>
+                        <a href="{% url 'subreddit-create' %}"><button type="button" class="btn btn-secondary btn-sm btn-block mt-3">CREATE COMMUNITY</button></a>
                     </div>
 
                     <div class="container-fluid mt-3 interesting-community right-column-background">    
@@ -439,6 +375,8 @@
                 </div>
         </div>
     </div>
+
+
     <script src="{% static 'newsfeed/js/reconnecting-websocket.js' %}"></script>
     <script src="{% static 'newsfeed/js/notifications.js' %}"></script>
     <script src="{% static 'newsfeed/js/updown_vote.js' %}"></script>
