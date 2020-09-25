@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/newfeeds.css">
+    <link rel="stylesheet" href="../css/notification.css">
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Start navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+
+            <div class="icon-container d-flex align-items-center">
+                <a href="index.html" class="navbar-brand"> <img src="../icon/nav-icon.png" alt="logo-image"></a>
+                <h4 class="navbar-icon-title">Reddit</h4>
+            </div>
+
+            <form class="form-inline my-3 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="button-container d-flex align-items-center justify-content-around">
+                <div class="dropdown notification-button mt-1 ml-auto">
+                    <span class="number-of-notification">0</span>
+
+                    <button class="btn dropdown-toggle" type="button" id="dropdownNoti" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownNoti">
+                      <a class="dropdown-item d-flex align-items-between" href="#">
+                        <div class="noti-image">
+                            <img src="../icon/nav-icon.png" alt="">
+                        </div>
+                        <div class="noti-content">
+                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioned you in a comment </p>
+                            <p class="noti-conntent-bot">3 hours ago</p>
+                        </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-between" href="#">
+                        <div class="noti-image">
+                            <img src="../sample-img/ad-sample-5.png" alt="">
+                        </div>
+                        <div class="noti-content">
+                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioned you in a comment </p>
+                            <p class="noti-conntent-bot">3 hours ago</p>
+                        </div>
+                      </a>
+                      <a class="dropdown-item d-flex align-items-between" href="#">
+                        <div class="noti-image">
+                            <img src="../icon/top-communities-banner.png" alt="">
+                        </div>
+                        <div class="noti-content">
+                            <p class="noti-conntent-top"> <span>aRedditUser</span> has mentioasdm entioasdmentio asdmentioasd 12e ain menti onedmentioneda comment </p>
+                            <p class="noti-conntent-bot">3 hours ago</p>
+                        </div>
+                      </a>
+
+                    </div>
+                  </div>
+                <span class="collapse navbar-collapse">
+                    <button type="button" class="btn btn-outline-primary mr-3">Log in</button>
+                    <button type="button" class="btn btn-primary">Sign Up</button>
+                </span>
+                <span class="dropdown-container btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user"></i>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-moon"></i>
+                            <p>Night mode</p>
+                            <i class="fas fa-toggle-off"></i>
+                        </div>
+                        <div class="dropdown-item d-flex  align-items-center">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <p>Login/Sign Up</p>
+                        </div>
+                    </div>
+                </span>
+   
+                
+                  
+            </div>
+
+        </div>
+    </nav>
+    <!-- End navbar -->
+
+    <!-- Main section -->
+    <div class="main-section">
+        <div class="container-fluid notifications-wrapper d-flex justify-content-between">
+            <div class="noti-wrapper lighter">
+                <div class="noti-title">Post Reply: <a href="#">Adverb position</a></div>
+                <div class="content-wrapper">
+                    <div class="noti-location">from <a href="#">/u/coffee</a> via <a href="#">/r/Politic</a> sent 5 months ago</div>
+                    <div class="noti-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, culpa nihil assumenda magnam, repudiandae molestias nulla voluptatem dicta eligendi aliquid vitae velit, dolorem quasi labore tenetur reprehenderit perferendis omnis modi!</div>
+                </div>
+            </div>
+            <div class="noti-wrapper darker">
+                <div class="noti-title">Post Reply: <a href="#">Adverb position</a></div>
+                <div class="content-wrapper">
+                    <div class="noti-location">from <a href="#">/u/coffee</a> via <a href="#">/r/Politic</a> sent 5 months ago</div>
+                    <div class="noti-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, culpa nihil assumenda magnam, repudiandae molestias nulla voluptatem dicta eligendi aliquid vitae velit, dolorem quasi labore tenetur reprehenderit perferendis omnis modi!</div>
+                </div>
+            </div>
+            <div class="noti-wrapper lighter">
+                <div class="noti-title">Post Reply: <a href="#">Adverb position</a></div>
+                <div class="content-wrapper">
+                    <div class="noti-location">from <a href="#">/u/coffee</a> via <a href="#">/r/Politic</a> sent 5 months ago</div>
+                    <div class="noti-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, culpa nihil assumenda magnam, repudiandae molestias nulla voluptatem dicta eligendi aliquid vitae velit, dolorem quasi labore tenetur reprehenderit perferendis omnis modi!</div>
+                </div>
+            </div>
+            <div class="noti-wrapper darker">
+                <div class="noti-title">Post Reply: <a href="#">Adverb position</a></div>
+                <div class="content-wrapper">
+                    <div class="noti-location">from <a href="#">/u/coffee</a> via <a href="#">/r/Politic</a> sent 5 months ago</div>
+                    <div class="noti-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, culpa nihil assumenda magnam, repudiandae molestias nulla voluptatem dicta eligendi aliquid vitae velit, dolorem quasi labore tenetur reprehenderit perferendis omnis modi!</div>
+                </div>
+            </div>
+            <div class="noti-wrapper lighter">
+                <div class="noti-title">Post Reply: <a href="#">Adverb position</a></div>
+                <div class="content-wrapper">
+                    <div class="noti-location">from <a href="#">/u/coffee</a> via <a href="#">/r/Politic</a> sent 5 months ago</div>
+                    <div class="noti-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, culpa nihil assumenda magnam, repudiandae molestias nulla voluptatem dicta eligendi aliquid vitae velit, dolorem quasi labore tenetur reprehenderit perferendis omnis modi!</div>
+                </div>
+            </div>
+            <div class="noti-wrapper darker">
+                <div class="noti-title">Post Reply: <a href="#">Adverb position</a></div>
+                <div class="content-wrapper">
+                    <div class="noti-location">from <a href="#">/u/coffee</a> via <a href="#">/r/Politic</a> sent 5 months ago</div>
+                    <div class="noti-content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti, culpa nihil assumenda magnam, repudiandae molestias nulla voluptatem dicta eligendi aliquid vitae velit, dolorem quasi labore tenetur reprehenderit perferendis omnis modi!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
