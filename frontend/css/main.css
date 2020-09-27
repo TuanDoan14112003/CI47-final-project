@@ -1,3 +1,10 @@
+/* dddddddddddddddddddddddddddddddddddd */
+button:focus {
+    outline: none!important;
+}
+.dropdown-item.new-notification {
+    background-color: #bbbbbb;
+}
 * {
     padding: 0;
     margin: 0;
@@ -18,12 +25,14 @@
 .navbar .dropdown-container {
     position: relative;
 }
+/* dddddddddddddddddddddddddddddddddddddddddd */
 .navbar .dropdown-menu {
     position: absolute;
-    left: -80px !important;
+    left: -250px !important;
 }
+/* ddddddddddddddddddddddddddddddddddddddddd */
 .navbar .dropdown-item {
-    padding: 2px 5px !important;
+    padding: 10px 5px !important;
 }
 .navbar .dropdown-item p {
     margin: 0 10px;
@@ -37,8 +46,9 @@
     width: 400px;
     white-space: normal !important;
 }
+/* dddddddddddddddddddddddddddddddddddddddddd */
 .notification-button .dropdown-menu a {
-    margin: 10px 0;
+    margin: 0;
     max-width: 400px;
     white-space: normal !important;
 }

@@ -7,11 +7,12 @@
     height: 220px;
     background-size: cover;
 }
+/* ddddddddddddddddddddddddddddddddddddddddddddddddddddddd */
 .subreddit-cover .avatar-wrapper {
     min-height: 30px;
     height: 102px;
-    padding-bottom: 5px;
     display: flex;
+    align-items: center;
 }
 .subreddit-cover .avatar-img {
     margin-left: 22%;

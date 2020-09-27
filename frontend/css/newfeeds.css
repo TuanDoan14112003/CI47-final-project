@@ -1,3 +1,11 @@
+/* dddddddddddddddddddddddddddddddddddddddddddd */
+.main-content-left a:hover {
+    text-decoration: none;
+    color: #000;
+}
+.main-content-left a {
+    color: #000;
+}
 
 
 /* Main section styling */
@@ -130,8 +138,9 @@
 .main-article-body {
     overflow-y: hidden;
 }
+/* ddddddddddddddddddddddddddddddddddddddddddddddddddddddd */
 .main-article-body.image-type {
-    max-height: 600px;
+    height: auto;
 }
 .main-article-body.video-type video {
     width: 100%;
@@ -274,8 +283,9 @@
     .single-article, .main-article-body  {
         margin-top: 4%;
     }
+    /* ddddddddddddddddddddddddddddddddddddddddddddddddddddddd */
     .main-article-body.image-type {
-        max-height: 450px;
+        height: auto;
     }
     .main-article-body.text-type {
         max-height: 200px;
