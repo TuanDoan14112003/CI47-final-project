@@ -92,8 +92,12 @@ giống controller thì xóa đi rồi check nó đúng sai rồi hiện ra*/
     text-align: right;
     cursor: pointer;
 }
-
-
+/* dddddddddddddddddddddddddddddddddddddddddd */
+.login_signup_container .success_message {
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #1ab5db;
+}
 .login_signup_container .input_wrapper label {
     position: absolute;
     pointer-events: none;
