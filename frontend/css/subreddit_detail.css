@@ -2,10 +2,12 @@
     margin-top: 60px;
     width: 100%;
 }
+/* ddddddddddddddddddddddddddddddddddddddddddd */
 .subreddit-cover .cover-img {
-    background-image: url(../img/cover-img.jpeg);
     height: 220px;
-    background-size: cover;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 /* ddddddddddddddddddddddddddddddddddddddddddddddddddddddd */
 .subreddit-cover .avatar-wrapper {
@@ -14,13 +16,13 @@
     display: flex;
     align-items: center;
 }
+/* ddddddddddddddddddddddddddddddd */
 .subreddit-cover .avatar-img {
     margin-left: 22%;
     margin-right: 20px;
     height: 80px;
     width: 80px;
     border-radius: 50%;
-    background-image: url(../img/subreddit_avatar.jpg);
     background-size: cover;
 }
 .subreddit-cover .subreddit-name-wrapper {
