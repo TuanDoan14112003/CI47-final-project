@@ -149,7 +149,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">New image</span>
                                     </div>
-                                    <div class="custom-file">
+                                    <div class="custom-file " id="newFileInput">
                                         <input type="file" class="custom-file-input" >
                                         <label class="custom-file-label" >Choose file</label>
                                     </div>
@@ -213,7 +213,14 @@
         </div>
     </div>
     <script>
-
+    $('input[type="file"]').change(function(e){
+        var fileName = e.target.files[0].name;
+        var maxStringLengthAllowed = 30;
+        if (fileName.length > maxStringLengthAllowed) {
+            fileName = fileName.substring(0, maxStringLengthAllowed) + "...";
+        }
+        $('.custom-file-label').html(fileName);
+    });
     </script>
     <script src="../js/newsfeed.js"></script>
 
